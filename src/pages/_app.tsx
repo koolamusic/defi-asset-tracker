@@ -1,21 +1,29 @@
+import { ChakraProvider } from '@chakra-ui/react'
 import { AppProps } from 'next/app'
-import { ApolloProvider } from '@apollo/react-hooks'
-import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core'
-import { useApollo } from '../lib/apollo'
-import theme from '../lib/theme'
+import Router from 'next/router'
+import progress from 'nprogress';
 
-export default function App({ Component, pageProps }: AppProps): JSX.Element {
-  const apolloClient = useApollo(pageProps.initialApolloState)
+import theme from '../theme'
+import Fonts from '../components/Global'
+import {Unstated} from '@lib/unstated'
 
+/* Configure N-progress Routing Feedback */
+progress.configure({ showSpinner: false });
+
+/* ------Apply NextJs Custom Routing------ */
+Router.events.on('routeChangeStart', () => progress.start());
+Router.events.on('routeChangeComplete', () => progress.done());
+Router.events.on('routeChangeError', () => progress.done());
+
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={apolloClient}>
-      <ThemeProvider theme={theme}>
-        <ColorModeProvider>
-          <CSSReset />
-          <Component {...pageProps} />
-        </ColorModeProvider>
-      </ThemeProvider>
-    </ApolloProvider>
+    <Unstated.Provider>
+      <ChakraProvider resetCSS theme={theme}>
+        <Fonts />
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </Unstated.Provider>
   )
 }
 
+export default MyApp

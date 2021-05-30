@@ -7,5 +7,5 @@ function useDefaultState(initialState = "{}") {
     return { data, update }
 }
 
-export let ConfigurationContainer = createContainer(useDefaultState)
+export let Unstated = createContainer(useDefaultState)
 export let PayloadContainer = createContainer(useDefaultState)
