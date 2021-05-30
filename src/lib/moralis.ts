@@ -18,6 +18,9 @@ export function useMoralis() {
     Moralis = require("moralis");
     Moralis.initialize(MORALIS_APPLICATION_ID);
     Moralis.serverURL = MORALIS_SERVER_URL;
+
+    /* Use custom message when Authenticating */
+    Moralis.Web3.getSigningData = () => 'Give DeFi Asset tracker permissions to read and report ROI on your tokens and NFTs'
   }
   return { Moralis };
 }

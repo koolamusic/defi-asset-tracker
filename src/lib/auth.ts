@@ -23,6 +23,9 @@ export function useAuth() {
         logout: async () => {
             try {
                 await Moralis?.User.logOut();
+                /* Temp persist user in local storage */
+                window.localStorage.removeItem("user")
+                /* Temp persist user in local storage */
                 router.push("/login");
             } catch (e) {
                 console.error(e.message, e);

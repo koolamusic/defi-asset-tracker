@@ -3,21 +3,24 @@ import Head from 'next/head'
 import { Text, Box, Flex } from '@chakra-ui/react'
 
 
-import { Wrapper, CardWrapper } from '../components/Container'
-import { Main } from '../components/Main'
-import { Header } from '../components/Header'
+import { Wrapper, CardWrapper } from '@components/Container'
+import { SubmitButton } from '@components/Layout'
 
+import { Main } from '@components/Main'
+import { Header } from '@components/Header'
+import { useAuth } from '@lib/auth'
 import { styleConstants } from '../theme';
 
 
 
 
 export default function Page(): JSX.Element {
+  const { logout, login } = useAuth()
 
   const fetchResources = useCallback(async () => {
 
     try {
-  
+
       // console.log(manga, jokes)
     } catch (error) {
       alert(error)
@@ -42,19 +45,12 @@ export default function Page(): JSX.Element {
 
         {/* =================>  The Jokes Section */}
         <Main>
-          <Box my={4} mt={8} pt={6}>
-            <Text
-              bgGradient="linear(to-l, #7928CA,#FF0080)"
-              bgClip="text"
-              fontSize={["3xl", "5xl"]}
-              fontWeight="bold"
-              textAlign={["center", "left"]}
-              my={[3, 6]}
-              py={[2, 4]}
-            >
-              Hear a Joke
-            </Text>
-          </Box>
+          <Flex justify="space-between" my={4} mt={8} pt={6}>
+            <SubmitButton onClick={login} type="button" buttonName="Login Account" />
+          </Flex>
+          <Flex justify="space-between" my={4} mt={8} pt={6}>
+            <SubmitButton onClick={logout} type="button" buttonName="Logout your Account" />
+          </Flex>
         </Main>
         {/* =================>  The Jokes Section */}
 

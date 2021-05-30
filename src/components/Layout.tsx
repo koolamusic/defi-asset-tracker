@@ -17,8 +17,8 @@ export interface IPageLayout {
 interface ISubmitButton extends ButtonProps {
     buttonName?: string;
     analyticName?: string;
+    type: 'submit' | 'button' | 'reset';
     isLoading?: boolean;
-    useSubmit?: boolean | 'submit' | 'button' | 'reset' | undefined;
     withIcon?: boolean | undefined;
 }
 
@@ -58,7 +58,7 @@ export const FormLayout = (props: IPageLayout): JSX.Element => {
 
 
 export const SubmitButton: React.FC<ISubmitButton> = (props) => {
-    const { withIcon, isLoading, buttonName, ...rest } = props;
+    const { withIcon, isLoading, type, buttonName, ...rest } = props;
     return (
         <Button
             borderRadius="4px"
@@ -67,7 +67,7 @@ export const SubmitButton: React.FC<ISubmitButton> = (props) => {
             minH="3rem"
             justifyContent={props.withIcon ? 'space-between' : 'center'}
             colorScheme="green"
-            type="submit"
+            type={type ?? "submit"}
             isLoading={isLoading}
             rightIcon={(withIcon && <ArrowForwardIcon />) || <ArrowForwardIcon />}
             width="100%"
