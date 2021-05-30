@@ -1,46 +1,27 @@
-# TypeScript - Apollo GraphQL - Chakra - Eslint Example
+# Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui) and Typescript
 
-One of the strengths of GraphQL is [enforcing data types on runtime](https://graphql.github.io/graphql-spec/June2018/#sec-Value-Completion). Further, TypeScript and [GraphQL Code Generator](https://graphql-code-generator.com/) (graphql-codegen) make it safer by typing data statically, so you can write truly type-protected code with rich IDE assists.
+This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app with typescript.
 
-This template extends [Apollo Server and Client Example](https://github.com/vercel/next.js/tree/canary/examples/api-routes-apollo-server-and-client#readme) by rewriting in TypeScript and integrating [graphql-let](https://github.com/piglovesyou/graphql-let#readme), which runs [TypeScript React Apollo](https://graphql-code-generator.com/docs/plugins/typescript-react-apollo) in [graphql-codegen](https://github.com/dotansimha/graphql-code-generator#readme) under the hood. It enhances the typed GraphQL use as below:
+Next.js and chakra-ui have built-in TypeScript declarations, so we'll get autocompletion for their modules straight away.
 
-```tsx
-import { useNewsQuery } from './news.graphql'
-
-const News = () => {
-	// Typed already️⚡️
-	const { data: { news } } = useNewsQuery()
-
-	return <div>{news.map(...)}</div>
-}
-```
-
-By default `**/*.graphqls` is recognized as GraphQL schema and `**/*.graphql` as GraphQL documents. If you prefer the other extensions, make sure the settings of the webpack loader in `next.config.js` and `.graphql-let.yml` are consistent.
+We are connecting the Next.js `_app.js` with `chakra-ui`'s Provider and theme so the pages can have app-wide dark/light mode. We are also creating some components which shows the usage of `chakra-ui`'s style props.
 
 ## Deploy your own
 
-Deploy the example using [Vercel](https://vercel.com):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/koolamusic/nextjs-typescript-graphql-chakra-eslint)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui-typescript&project-name=with-chakra-ui-typescript&repository-name=with-chakra-ui-typescript)
 
 ## How to use
 
-### Download manually
+### Using `create-next-app`
 
-- You need to have `git` installed on your machine [https://git-scm.com/](https://git-scm.com/)
-- You need to have `node and npm or yarn` installed on your machine [https://nodejs.org/en/](https://nodejs.org/en/)
-
-```bash
-$ git clone https://github.com/koolamusic/nextjs-typescript-graphql-chakra-eslint
-cd nextjs-typescript-graphql-chakra-eslint
-```
-
-Install it and run:
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npm install
-npm run dev
+npx create-next-app --example with-chakra-ui-typescript with-chakra-ui-typescript-app
 # or
-yarn
-yarn dev
+yarn create next-app --example with-chakra-ui-typescript with-chakra-ui-typescript-app
 ```
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
