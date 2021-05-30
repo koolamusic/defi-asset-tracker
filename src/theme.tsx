@@ -4,8 +4,8 @@ import { createBreakpoints } from '@chakra-ui/theme-tools'
 
 const fonts = {
   mono: `'Menlo', Monaco, Fira Code, Ubuntu Mono, monospace`,
-  heading: `"Barlow", Cantarell, Oxygen, Ubuntu, sans-serif`,
-  body: `"Dosis", Segoe UI, Oxygen, Ubuntu, Roboto, Fira Sans, Helvetica Neue, sans-serif`,
+  heading: `"Space Grotesk", Cantarell, Oxygen, Ubuntu, sans-serif`,
+  body: `"Space Grotesk", Segoe UI, Oxygen, Ubuntu, Roboto, Fira Sans, Helvetica Neue, sans-serif`,
 };
 const fontSizes = {
   xs: '0.65rem',
@@ -50,8 +50,8 @@ export const styleConstants = {
   paddingWrapper: '.5rem 2rem',
   altBorder: '1px solid #dddddd',
   thickBorder: '1px solid #38a169',
-  altBackground: '#fafffd',
-  background: '#F7FAFC',
+  altBackground: 'rgb(247, 248, 250)',
+  background: 'rgba(0, 0, 0, 0) radial-gradient(50% 50%, rgba(252, 7, 125, 0.063) 0%, rgba(255, 255, 255, 0) 100%) repeat scroll 0% 0%',
   inputMinHeight: '48px',
   inputFontSize: '16px',
   inputPlaceHolder: '14px',
@@ -60,8 +60,22 @@ export const styleConstants = {
   lightShadow: '6px 5px 10px rgba(0,50,30,0.03)',
   blue: '#0476D0',
   green: '#00B268',
-  main: 'green.600',
+  main: 'blue.800',
   green800: '#22543d',
 };
 
 export default theme
+
+// position: fixed;
+// top: 0px;
+// left: calc(-50vw);
+// right: 0px;
+// pointer-events: none;
+// width: 200vw;
+// height: 200vh;
+// mix-blend-mode: color;
+// background: rgba(0, 0, 0, 0) radial-gradient(50% 50%, rgba(252, 7, 125, 0.063) 0%, rgba(255, 255, 255, 0) 100%) repeat scroll 0% 0%;
+// transform: translateY(-100vh);
+// will-change: background;
+// transition: background 450ms ease 0s;
+// }

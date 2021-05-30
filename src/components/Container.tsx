@@ -1,9 +1,10 @@
 import { Flex, useColorMode, SimpleGrid, FlexProps } from '@chakra-ui/react'
 import styled from '@emotion/styled'
+import { styleConstants } from 'src/theme'
 
 
-const bgColor = { light: 'gray.50', dark: 'gray.900' }
-const color = { light: 'black', dark: 'white' }
+const bgColor = { light: styleConstants.background, dark: 'gray.900' }
+const color = { light: 'text', dark: 'white' }
 
 
 export const Container = (props: FlexProps) => {
@@ -13,6 +14,8 @@ export const Container = (props: FlexProps) => {
       direction="column"
       alignItems="center"
       justifyContent="flex-start"
+      willChange="background"
+      transition="background 450ms ease 0s"
       bg={bgColor[colorMode]}
       color={color[colorMode]}
       {...props}
@@ -31,6 +34,8 @@ export const Wrapper: React.FC<FlexProps> = (props): JSX.Element => {
       width="100%"
       minH="100vh"
       justifyContent="flex-start"
+      willChange="background"
+      transition="background 450ms ease 0s"
       bg={bgColor[colorMode]}
       color={color[colorMode]}
       {...props}
@@ -54,7 +59,7 @@ flex-direction: column;
 }
             
 `
-export const JokeWrapper = styled(SimpleGrid)`
+export const GridWrapper = styled(SimpleGrid)`
 
 @media (max-width: 630px) { 
     grid-template-columns: none;
