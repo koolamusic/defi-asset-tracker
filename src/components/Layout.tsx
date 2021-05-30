@@ -1,7 +1,7 @@
 import React from 'react';
 import { Main } from './Main'
 import { Wrapper } from './Container'
-import { Header } from './Header';
+import { Header, Footer } from './Body';
 import { styleConstants } from '../theme'
 import { Button, ButtonProps } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons'
@@ -28,8 +28,43 @@ export const FormLayout = (props: IPageLayout): JSX.Element => {
     return (
         <React.Fragment>
             {/* <Header isDefault={props.isDefaultHeader} /> */}
+            <Footer />
             <Wrapper
                 marginTop={styleConstants.fixedMarginTop}
+                padding={props.wrapperBox || styleConstants.paddingWrapper}
+                width="100%"
+                alignItems="flex-start"
+                height="100%"
+            >
+                {/* === section to render the form ==== */}
+                <Main
+                    width={["100%", "30rem"]}
+                    bg={['inherit', 'white']}
+                    margin={'auto'}
+                    my="10"
+                    px={[0, 10]}
+                    py={8}
+                    alignItems="center"
+                    border={["none", styleConstants.defaultBorder]}
+                    justifyContent="center"
+                    boxShadow={["none", styleConstants.lightShadow]}
+                    borderRadius={styleConstants.defaultRadius}
+                >
+                    {props.children}
+                </Main>
+            </Wrapper>
+        </React.Fragment>
+    );
+};
+
+
+
+export const CompoundLayout = (props: IPageLayout): JSX.Element => {
+    return (
+        <React.Fragment>
+            <Footer />
+            <Wrapper
+                // marginTop={styleConstants.fixedMarginTop}
                 padding={props.wrapperBox || styleConstants.paddingWrapper}
                 width="100%"
                 alignItems="flex-start"

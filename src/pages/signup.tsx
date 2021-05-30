@@ -5,7 +5,7 @@ import { Box } from '@chakra-ui/react';
 import { RepeatIcon } from '@chakra-ui/icons'
 
 import { FormLayout, SubmitButton } from '../components/Layout'
-import { FormPageHeader } from '../components/Header'
+import { FormPageHeader } from '../components/Body'
 import { InputField, PasswordField } from '../components/Fields';
 import { generateRandomName } from '../utils/helpers'
 

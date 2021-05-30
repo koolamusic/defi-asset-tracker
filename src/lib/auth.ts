@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router'
 import { useMoralis } from "./moralis";
+import { generateRandomName } from '@utils/helpers'
+
 
 export function useAuth() {
     const { Moralis } = useMoralis();
@@ -8,7 +10,17 @@ export function useAuth() {
     return {
         login: async () => {
             try {
+
                 const user = await Moralis?.Web3.authenticate();
+                console.log(user.authenticated())
+
+                /* Assign new properties on signup */
+                const hasName = await user.get("name")
+
+                if (!hasName) {
+                    user.set("name", generateRandomName())
+                    await user.save()
+                }
 
                 /* Temp persist user in local storage */
                 window.localStorage.setItem("user", JSON.stringify(user))
@@ -17,6 +29,7 @@ export function useAuth() {
                 router.push('/')
             } catch (e) {
                 console.error(e.message, e);
+                alert(e.message)
             }
         },
 
@@ -29,6 +42,7 @@ export function useAuth() {
                 router.push("/login");
             } catch (e) {
                 console.error(e.message, e);
+                alert(e.message)
             }
         },
 
