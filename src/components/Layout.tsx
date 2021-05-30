@@ -27,7 +27,7 @@ interface ISubmitButton extends ButtonProps {
 export const FormLayout = (props: IPageLayout): JSX.Element => {
     return (
         <React.Fragment>
-            <Header isDefault={props.isDefaultHeader} />
+            {/* <Header isDefault={props.isDefaultHeader} /> */}
             <Wrapper
                 marginTop={styleConstants.fixedMarginTop}
                 padding={props.wrapperBox || styleConstants.paddingWrapper}
@@ -66,7 +66,7 @@ export const SubmitButton: React.FC<ISubmitButton> = (props) => {
             alignContent="center"
             minH="3rem"
             justifyContent={props.withIcon ? 'space-between' : 'center'}
-            colorScheme="green"
+            colorScheme="blue"
             type={type ?? "submit"}
             isLoading={isLoading}
             rightIcon={(withIcon && <ArrowForwardIcon />) || <ArrowForwardIcon />}

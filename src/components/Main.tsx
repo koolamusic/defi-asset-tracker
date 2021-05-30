@@ -22,7 +22,7 @@ export const Loader = ({ entry }: { entry: string }) => (
       thickness="10px"
       speed="0.65s"
       emptyColor="gray.200"
-      color="green.400"
+      color="blue.400"
       size="md"
     />
     <Text ml={2}>

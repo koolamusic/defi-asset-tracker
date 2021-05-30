@@ -46,7 +46,7 @@ export const InputField: React.FC<RHInputProps> = (props): JSX.Element => {
 
     return (
         <div>
-            <InputLabel id={[name, 'label'].join('-')} htmlFor={[name, 'input'].join('-')} color="gray.600" mt="3">
+            <InputLabel id={[name, 'label'].join('-')} htmlFor={[name, 'input'].join('-')} color="blue.600" mt="3">
                 {label}
             </InputLabel>
             <InputGroup size="lg">
@@ -58,8 +58,8 @@ export const InputField: React.FC<RHInputProps> = (props): JSX.Element => {
                     variant="outline"
                     id={[name, 'input'].join('-')}
                     placeholder={placeholder}
-                    focusBorderColor="gray.500"
-                    borderColor="gray.500"
+                    focusBorderColor="blue.500"
+                    borderColor="blue.500"
                     errorBorderColor="red.500"
                     size="lg"
                 />
@@ -90,7 +90,7 @@ export const PasswordField = (props: RHInputProps): JSX.Element => {
 
     return (
         <FormControl mt="3" position="relative">
-            <InputLabel id={[name, 'label'].join('-')} htmlFor={[name, 'input'].join('-')} color="gray.600">
+            <InputLabel id={[name, 'label'].join('-')} htmlFor={[name, 'input'].join('-')} color="blue.600">
                 {label}
             </InputLabel>
             <InputGroup size="lg">
@@ -101,8 +101,8 @@ export const PasswordField = (props: RHInputProps): JSX.Element => {
                     id={name}
                     name={name}
                     placeholder={placeholder}
-                    focusBorderColor="gray.500"
-                    borderColor="gray.500"
+                    focusBorderColor="blue.500"
+                    borderColor="blue.500"
                     errorBorderColor="red.500"
                     size="lg"
                 />

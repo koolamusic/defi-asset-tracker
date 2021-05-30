@@ -49,9 +49,9 @@ export const HeaderElement: React.FC = () => {
 
             {hasProfile &&
                 <Stack isInline alignItems="center" justifyContent="flex-end" width="130px">
-                    <Tooltip bg="green.600" hasArrow label={profile} placement="bottom">
+                    <Tooltip bg="blue.600" hasArrow label={profile} placement="bottom">
                         <Avatar cursor="pointer" name={profile} size="sm">
-                            <AvatarBadge p={1} bg="green.500" />
+                            <AvatarBadge p={1} bg="blue.500" />
                         </Avatar>
                     </Tooltip>
 
@@ -79,18 +79,18 @@ export const Header: React.FC<{ isDefault?: boolean; isBordered?: boolean }> = (
         <header>
             {isDefault ? (
                 <HeaderDefault display="flex" bg="white" width="100%" alignItems="center">
-                    <HeaderElement name="Fibonnaci Couture" />
+                    <HeaderElement />
                 </HeaderDefault>
             ) : (
-                    <HeaderBox
-                        display="flex"
-                        borderBottom={isBordered ? '1px solid #dddddd' : 'none'}
-                        width="100%"
-                        alignItems="center"
-                    >
-                        <HeaderElement name="Fibonnaci Couture" />
-                    </HeaderBox>
-                )}
+                <HeaderBox
+                    display="flex"
+                    borderBottom={isBordered ? '1px solid #dddddd' : 'none'}
+                    width="100%"
+                    alignItems="center"
+                >
+                    <HeaderElement />
+                </HeaderBox>
+            )}
         </header>
     );
 };
@@ -99,12 +99,12 @@ export const FormPageHeader: React.FC<{ formHeading: string; formSubHeading?: st
     const { formHeading, formSubHeading } = props;
     return (
         <React.Fragment>
-            <Heading as="h3" fontWeight="500" size="lg">
+            <Heading as="h3" colorScheme="blue" fontWeight="500" size="lg">
                 {formHeading}
             </Heading>
             {formSubHeading && (
                 <Flex my="2" mb={4} justifyContent="flex-start">
-                    <Text fontSize="sm">{formSubHeading}</Text>
+                    <Text colorScheme="blue" fontSize="sm">{formSubHeading}</Text>
                 </Flex>
             )}
             <Divider mb={12} pb={2} />
