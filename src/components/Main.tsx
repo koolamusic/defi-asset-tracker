@@ -1,14 +1,32 @@
-import { Stack, StackProps } from '@chakra-ui/core'
+import { Box, BoxProps, Flex, Spinner, Text } from '@chakra-ui/react'
 
-export const Main: React.FC<StackProps> = (props) => (
-  <Stack
-    spacing="1.5rem"
+
+export const Main: React.FC<BoxProps> = (props) => {
+  return <Box
     width="100%"
-    maxWidth="48rem"
-    mt="-45vh"
-    pt="8rem"
-    pb="8rem"
+    margin=" 0 auto"
+    maxWidth="1280px"
+    pt="2rem"
     px="1rem"
+
     {...props}
-  />
+  />;
+};
+
+
+
+
+export const Loader = ({ entry }: { entry: string }) => (
+  <Flex>
+    <Spinner
+      thickness="10px"
+      speed="0.65s"
+      emptyColor="gray.200"
+      color="green.400"
+      size="md"
+    />
+    <Text ml={2}>
+      Loading your {entry}
+    </Text>
+  </Flex>
 )
