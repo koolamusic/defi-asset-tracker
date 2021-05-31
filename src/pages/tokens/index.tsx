@@ -4,6 +4,7 @@ import { CompoundLayout } from '@components/Layout'
 import { FormPageHeader } from '@components/Body'
 import { MultiStat } from '@components/Statistic'
 import { TransactionList, TransactionSearch } from '@components/List'
+import { Box } from '@chakra-ui/react'
 
 
 export default function Page(): JSX.Element {
@@ -12,9 +13,10 @@ export default function Page(): JSX.Element {
         <CompoundLayout>
             <FormPageHeader
                 formHeading="Hello Andrew"
-                formSubHeading="Track your assets on the BSC and ETH Network"
+                formSubHeading="Monitor ROI for your tokens on the BSC and ETH Network"
             />
             <MultiStat />
+            <Box py={4} />
             <TransactionLog />
             <TransactionSearch
                 customerName="0x33481f1383131"

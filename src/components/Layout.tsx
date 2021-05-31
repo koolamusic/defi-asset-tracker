@@ -3,7 +3,7 @@ import { Main } from './Main'
 import { Wrapper } from './Container'
 import { Header, Footer } from './Body';
 import { styleConstants } from '../theme'
-import { Button, ButtonProps } from '@chakra-ui/react';
+import { Box, Button, ButtonProps } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 
 
@@ -26,7 +26,9 @@ interface ISubmitButton extends ButtonProps {
 
 export const FormLayout = (props: IPageLayout): JSX.Element => {
     return (
-        <React.Fragment>
+        <Box
+            position="relative"
+        >
             {/* <Header isDefault={props.isDefaultHeader} /> */}
             <Footer />
             <Wrapper
@@ -53,7 +55,7 @@ export const FormLayout = (props: IPageLayout): JSX.Element => {
                     {props.children}
                 </Main>
             </Wrapper>
-        </React.Fragment>
+        </Box>
     );
 };
 
@@ -72,10 +74,11 @@ export const CompoundLayout = (props: IPageLayout): JSX.Element => {
                 {/* === section to render the form ==== */}
                 <Main
                     width={["100%", "40rem"]}
+                    minH="80vh"
                     bg={['inherit', '#ffffff44']}
                     margin={'auto'}
                     my="10"
-                    marginTop={styleConstants.fixedMarginTop}
+                    marginTop={[styleConstants.fixedMarginTopSmall, styleConstants.fixedMarginTop]}
                     px={[2, 10]}
                     py={8}
                     alignItems="center"
