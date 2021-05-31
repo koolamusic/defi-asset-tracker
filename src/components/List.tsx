@@ -165,7 +165,7 @@ export const TransactionSearch: React.FC<ITransactionSearch> = (props) => {
   )
 }
 
-export const ProfileList: React.FC<ITransactionSearch> = (props) => {
+export const ProfileList: React.FC<Partial<ITransactionSearch>> = (props) => {
   const { customerName, itemName, paymentStatus } = props
 
   return (

@@ -16,29 +16,19 @@ export default function Page(): JSX.Element {
         <Box w="100%">
           <ProfileList
             customerName="Wallet Address"
-            customerStatus="Paid"
-            amountDue="3202"
-            overdueAmount="3113"
-            amount="3202"
             paymentStatus="Binance Chain"
-            amountPaid="3113"
-            overdueStatus="Rudimentaty"
-            iconName="arrow-forward"
-            iconSize="Rudimentaty"
-            cardLink="/"
+            itemName="Rudimentaty"
+            // iconName="arrow-forward"
           />
           <ProfileList
             customerName="Joined"
-            customerStatus="Paid"
-            amountDue="3202"
-            overdueAmount="3113"
-            amount="3202"
             paymentStatus="Binance Chain"
-            amountPaid="3113"
-            overdueStatus="Rudimentaty"
-            iconName="arrow-forward"
-            iconSize="Rudimentaty"
-            cardLink="/"
+            itemName="Rudimentaty"
+            // amountPaid="3113"
+            // customerStatus="Paid"
+            // amountDue="3202"
+            // overdueAmount="3113"
+            // amount="3202"
           />
           <SubmitButton type="button" mt={8} withIcon buttonName="Logout" />
         </Box>
