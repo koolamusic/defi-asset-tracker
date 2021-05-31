@@ -64,7 +64,6 @@ export const CompoundLayout = (props: IPageLayout): JSX.Element => {
         <React.Fragment>
             <Footer />
             <Wrapper
-                // marginTop={styleConstants.fixedMarginTop}
                 padding={props.wrapperBox || styleConstants.paddingWrapper}
                 width="100%"
                 alignItems="flex-start"
@@ -72,17 +71,18 @@ export const CompoundLayout = (props: IPageLayout): JSX.Element => {
             >
                 {/* === section to render the form ==== */}
                 <Main
-                    width={["100%", "30rem"]}
-                    bg={['inherit', 'white']}
+                    width={["100%", "40rem"]}
+                    // bg={['inherit', '#ffffff44']}
                     margin={'auto'}
                     my="10"
+                    marginTop={styleConstants.fixedMarginTop}
                     px={[2, 10]}
                     py={8}
                     alignItems="center"
-                    border={["none", styleConstants.defaultBorder]}
+                    // border={["none", styleConstants.altBorder]}
                     justifyContent="center"
-                    boxShadow={["none", styleConstants.lightShadow]}
-                    borderRadius={styleConstants.defaultRadius}
+                // boxShadow={["none", styleConstants.lightShadow]}
+                // borderRadius={styleConstants.formBorderRadius}
                 >
                     {props.children}
                 </Main>

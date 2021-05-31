@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { Box, Avatar, Heading, Flex, Tooltip, Divider, Badge, Text, AvatarBadge, Stack, Button, ButtonGroup, IconButton } from '@chakra-ui/react';
+import { Box, Avatar, Heading, Flex, Tooltip, Divider, Badge, Text, AvatarBadge, Stack, Button, ButtonGroup, IconButton, useMediaQuery } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { styleConstants } from '../theme';
 import nookies from 'nookies'
 import { decode } from 'js-base64'
 import { AddIcon } from '@chakra-ui/icons';
+import { useRouter } from 'next/router';
 
 const HeaderBox = styled(Box)`
     background-color: ${styleConstants.background};
@@ -115,38 +116,44 @@ export const FormPageHeader: React.FC<{ formHeading: string; formSubHeading?: st
 
 
 export const Footer: React.FC = (): JSX.Element => {
+    const router = useRouter()
+    const [isMobile] = useMediaQuery("(max-width: 480px)")
+
     return (
         <Flex
-            position="fixed"
-            justifyContent="center"
-            bottom="0"
+            position={["fixed", "relative"]}
+            justifyContent={["center", "flex-end"]}
+            zIndex="999"
+            bottom={[0, 'inherit']}
             width="100%"
             padding={styleConstants.paddingWrapper}
-            pb={2}
+            // bg={['white', 'inherit']}
+            // border={[styleConstants.altBorder, "none"]}
+            py={2}
 
         >
             <Box
                 // bg="gray.100"
                 // colorScheme="white"
-                p={1}
-                // width="max-content"
-                width={['max-content', "max-content", "max-content"]}
+                p={2}
+                bg={['white', 'inherit']}
+                width={['100%', "max-content", "max-content"]}
                 border={styleConstants.altBorder}
                 borderRadius="lg"
 
             >
 
                 <ButtonGroup
-                    size="sm"
+                    size={isMobile ? "sm" : "md"}
                     variant="solid"
                     borderRadius="lg"
                     display="flex"
                     justifyContent="space-between"
                 >
-                    <Button mr="-px">Tokens</Button>
-                    <Button mr="-px">NFTs</Button>
-                    <Button mr="-px">Transactions</Button>
-                    <Button mr="-px">Profile</Button>
+                    <Button onClick={(_e) => router.push('/tokens')} mr="-px">Tokens</Button>
+                    <Button onClick={(_e) => router.push('/nfts')} mr="-px">NFTs</Button>
+                    <Button onClick={(_e) => router.push('/')} mr="-px">Transactions</Button>
+                    <Button onClick={(_e) => router.push('/')} mr="-px">Profile</Button>
                     {/* <IconButton aria-label="Add to friends" icon={<AddIcon />} /> */}
                 </ButtonGroup>
             </Box>
