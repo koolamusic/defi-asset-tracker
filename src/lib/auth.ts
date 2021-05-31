@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useMoralis } from "./moralis";
 import { generateRandomName } from '@utils/helpers'
-import { loginUser, logoutUser } from '@utils/user'
+import { loginUser } from '@utils/user'
 import { UserAccountDict } from './constants';
 
 
@@ -14,10 +14,9 @@ export function useAuth() {
             try {
 
                 const user = await Moralis?.Web3.authenticate();
-                console.log(user.authenticated())
 
                 /* Assign new properties on signup */
-                const hasName = await user.get("name") as UserAccountDict
+                const hasName = await user.get("name")
 
                 if (!hasName) {
                     user.set("name", generateRandomName())
@@ -25,9 +24,21 @@ export function useAuth() {
                 }
 
                 /* Use utility to add user info to cookies */
-                loginUser(user)
-                /* Use utility to add user info to cookies */
+                const userToObject = JSON.parse(JSON.stringify(user)) as UserAccountDict
 
+                userToObject.ethBalance = await Moralis.Web3.getERC20();
+                userToObject.bnbBalance = await Moralis.Web3.getERC20({ chain: 'bsc' });
+
+                /* Use utility to add user info to cookies */
+                loginUser(userToObject)
+
+                // /* Upon login build some default profile object and add to context */
+                // const profile: UserAccountDict = {
+                //     ...user,
+                //     ethBalance,
+                //     bnbBalance
+                // }
+                // context.update(profile)
 
                 /* Temp persist user in local storage */
                 // window.localStorage.setItem("user", JSON.stringify(user))

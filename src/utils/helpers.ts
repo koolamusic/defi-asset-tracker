@@ -40,7 +40,7 @@ export function formatAddress(address = "") {
   return address.slice(0, 6).concat("...", address.slice(-6));
 }
 
-export function formatBalance(balance = "", decimals = 18) {
+export function formatBalance(balance = "", decimals = 18): number {
   return Number(balance) / 10 ** decimals;
 }
 

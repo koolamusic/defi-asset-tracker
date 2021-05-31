@@ -35,8 +35,9 @@ export const loginUser = async (payload: UserAccountDict, target = settings.root
     setCookie(null, settings.profileKey, userCookie, {
         sameSite: 'lax',
         maxAge: 30 * 24 * 60 * 60,
-        secure: true,
-        signed: true
+        /* @todo Set this back to secure and pass user profile from GetServerSideProps */
+        // secure: true,
+        // signed: true
     });
     window.location.replace(target);
 };

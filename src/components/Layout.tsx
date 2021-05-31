@@ -5,6 +5,7 @@ import { Header, Footer } from './Body';
 import { styleConstants } from '../theme'
 import { Box, Button, ButtonProps } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons'
+import { ProfileMenu } from './ProfileMenu';
 
 
 export interface IPageLayout {
@@ -64,6 +65,7 @@ export const FormLayout = (props: IPageLayout): JSX.Element => {
 export const CompoundLayout = (props: IPageLayout): JSX.Element => {
     return (
         <React.Fragment>
+            <ProfileMenu />
             <Footer />
             <Wrapper
                 padding={props.wrapperBox || styleConstants.paddingWrapper}
