@@ -1,12 +1,11 @@
 import { extendTheme } from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 
-
 const fonts = {
   mono: `'Menlo', Monaco, Fira Code, Ubuntu Mono, monospace`,
   heading: `"Space Grotesk Medium", Cantarell, Oxygen, Ubuntu, sans-serif`,
   body: `"Roobert - BC", Segoe UI, Oxygen, Ubuntu, Roboto, Fira Sans, Helvetica Neue, sans-serif`,
-};
+}
 const fontSizes = {
   xs: '0.65rem',
   sm: '0.875rem',
@@ -18,7 +17,7 @@ const fontSizes = {
   '4xl': '2.25rem',
   '5xl': '3rem',
   '6xl': '4rem',
-};
+}
 
 const breakpoints = createBreakpoints({
   sm: '40em',
@@ -41,8 +40,7 @@ const theme = extendTheme({
       700: '#0e1b7a',
       800: '#051149',
       900: '#00051a',
-    }
-
+    },
   },
   fonts,
   fontSizes,
@@ -65,7 +63,8 @@ export const styleConstants = {
   altBorder: '1px solid #e5ebff',
   thickBorder: '1px solid #0e1b7a',
   altBackground: 'rgb(247, 248, 250)',
-  background: 'rgba(0, 0, 0, 0) radial-gradient(50% 50%, rgba(252, 7, 125, 0.063) 0%, rgba(255, 255, 255, 0) 100%) repeat scroll 0% 0%',
+  background:
+    'rgba(0, 0, 0, 0) radial-gradient(50% 50%, rgba(252, 7, 125, 0.063) 0%, rgba(255, 255, 255, 0) 100%) repeat scroll 0% 0%',
   inputMinHeight: '48px',
   inputFontSize: '16px',
   inputPlaceHolder: '14px',
@@ -74,7 +73,7 @@ export const styleConstants = {
   lightShadow: '6px 5px 10px rgba(0,50,30,0.03)',
   blue: '#0e1b7a',
   main: 'blue.800',
-};
+}
 
 export default theme
 

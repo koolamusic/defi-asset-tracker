@@ -1,119 +1,113 @@
-import React from 'react';
+import React from 'react'
 import { Main } from './Main'
 import { Wrapper } from './Container'
-import { Header, Footer } from './Body';
+import { Header, Footer } from './Body'
 import { styleConstants } from '../theme'
-import { Box, Button, ButtonProps } from '@chakra-ui/react';
+import { Box, Button, ButtonProps } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import { ProfileMenu } from './ProfileMenu';
-
+import { ProfileMenu } from './ProfileMenu'
 
 export interface IPageLayout {
-    children: React.ReactNode;
-    wrapperBox?: string | number;
-    isDefaultHeader?: boolean;
+  children: React.ReactNode
+  wrapperBox?: string | number
+  isDefaultHeader?: boolean
 }
-
 
 interface ISubmitButton extends ButtonProps {
-    buttonName?: string;
-    analyticName?: string;
-    type: 'submit' | 'button' | 'reset';
-    isLoading?: boolean;
-    withIcon?: boolean | undefined;
+  buttonName?: string
+  analyticName?: string
+  type: 'submit' | 'button' | 'reset'
+  isLoading?: boolean
+  withIcon?: boolean | undefined
 }
 
-
-
 export const FormLayout = (props: IPageLayout): JSX.Element => {
-    return (
-        <Box
-            position="relative"
+  return (
+    <Box position="relative">
+      {/* <Header isDefault={props.isDefaultHeader} /> */}
+      <Footer />
+      <Wrapper
+        marginTop={['1rem', styleConstants.fixedMarginTopSmall]}
+        padding={props.wrapperBox || styleConstants.paddingWrapper}
+        width="100%"
+        alignItems="flex-start"
+        height="100%"
+      >
+        {/* === section to render the form ==== */}
+        <Main
+          width={['100%', '30rem']}
+          bg={['inherit', 'white']}
+          margin={'auto'}
+          my="10"
+          px={[0, 10]}
+          py={[3, 8]}
+          alignItems="center"
+          border={['none', styleConstants.defaultBorder]}
+          justifyContent="center"
+          boxShadow={['none', styleConstants.lightShadow]}
+          borderRadius={styleConstants.defaultRadius}
         >
-            {/* <Header isDefault={props.isDefaultHeader} /> */}
-            <Footer />
-            <Wrapper
-                marginTop={['1rem', styleConstants.fixedMarginTopSmall]}
-                padding={props.wrapperBox || styleConstants.paddingWrapper}
-                width="100%"
-                alignItems="flex-start"
-                height="100%"
-            >
-                {/* === section to render the form ==== */}
-                <Main
-                    width={["100%", "30rem"]}
-                    bg={['inherit', 'white']}
-                    margin={'auto'}
-                    my="10"
-                    px={[0, 10]}
-                    py={[3, 8]}
-                    alignItems="center"
-                    border={["none", styleConstants.defaultBorder]}
-                    justifyContent="center"
-                    boxShadow={["none", styleConstants.lightShadow]}
-                    borderRadius={styleConstants.defaultRadius}
-                >
-                    {props.children}
-                </Main>
-            </Wrapper>
-        </Box>
-    );
-};
-
-
+          {props.children}
+        </Main>
+      </Wrapper>
+    </Box>
+  )
+}
 
 export const CompoundLayout = (props: IPageLayout): JSX.Element => {
-    return (
-        <React.Fragment>
-            <ProfileMenu />
-            <Footer />
-            <Wrapper
-                padding={props.wrapperBox || styleConstants.paddingWrapper}
-                width="100%"
-                alignItems="flex-start"
-                height="100%"
-            >
-                {/* === section to render the form ==== */}
-                <Main
-                    width={["100%", "40rem"]}
-                    minH="80vh"
-                    bg={['inherit', '#ffffff44']}
-                    margin={'auto'}
-                    my="10"
-                    marginTop={[styleConstants.fixedMarginTopSmall, styleConstants.fixedMarginTop]}
-                    px={[2, 10]}
-                    py={8}
-                    alignItems="center"
-                    border={["none", styleConstants.tableBorder]}
-                    justifyContent="center"
-                    boxShadow={["none", styleConstants.lightShadow]}
-                    borderRadius={styleConstants.formBorderRadius}
-                >
-                    {props.children}
-                </Main>
-            </Wrapper>
-        </React.Fragment>
-    );
-};
-
+  return (
+    <React.Fragment>
+      <ProfileMenu />
+      <Footer />
+      <Wrapper
+        padding={props.wrapperBox || styleConstants.paddingWrapper}
+        width="100%"
+        alignItems="flex-start"
+        height="100%"
+      >
+        {/* === section to render the form ==== */}
+        <Main
+          width={['100%', '40rem']}
+          minH="80vh"
+          bg={['inherit', '#ffffff44']}
+          margin={'auto'}
+          my="10"
+          marginTop={[
+            styleConstants.fixedMarginTopSmall,
+            styleConstants.fixedMarginTop,
+          ]}
+          px={[2, 10]}
+          py={8}
+          alignItems="center"
+          border={['none', styleConstants.tableBorder]}
+          justifyContent="center"
+          boxShadow={['none', styleConstants.lightShadow]}
+          borderRadius={styleConstants.formBorderRadius}
+        >
+          {props.children}
+        </Main>
+      </Wrapper>
+    </React.Fragment>
+  )
+}
 
 export const SubmitButton: React.FC<ISubmitButton> = (props) => {
-    const { withIcon, isLoading, type, buttonName, ...rest } = props;
-    return (
-        <Button
-            borderRadius="4px"
-            fontWeight="700"
-            alignContent="center"
-            minH="3rem"
-            justifyContent={props.withIcon ? 'space-between' : 'center'}
-            colorScheme="blue"
-            type={type ?? "submit"}
-            isLoading={isLoading}
-            rightIcon={(withIcon && <ArrowForwardIcon />) || <ArrowForwardIcon />}
-            width="100%"
-            {...rest}
-        >
-            {buttonName}
-        </Button>
-    );
-};
+  const { withIcon, isLoading, type, buttonName, ...rest } = props
+  return (
+    <Button
+      borderRadius="4px"
+      fontWeight="700"
+      alignContent="center"
+      minH="3rem"
+      justifyContent={props.withIcon ? 'space-between' : 'center'}
+      colorScheme="blue"
+      type={type ?? 'submit'}
+      isLoading={isLoading}
+      rightIcon={(withIcon && <ArrowForwardIcon />) || <ArrowForwardIcon />}
+      width="100%"
+      {...rest}
+    >
+      {buttonName}
+    </Button>
+  )
+}
