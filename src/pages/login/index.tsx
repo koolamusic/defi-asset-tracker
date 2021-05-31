@@ -34,10 +34,9 @@ export default function Page(): JSX.Element {
 
     return (
         <FormLayout>
-            {/* <FormPageHeader
-                formHeading="Login with MetaMask"
-                formSubHeading="Login to your account to access your profile 😀"
-            /> */}
+            <FormPageHeader
+                formSubHeading="Measure and track the ROI on all your tokens and assets on the blockchain in one dashboard"
+            />
 
             <Center py={6}>
                 <Box

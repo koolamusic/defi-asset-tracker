@@ -32,7 +32,7 @@ export const FormLayout = (props: IPageLayout): JSX.Element => {
             {/* <Header isDefault={props.isDefaultHeader} /> */}
             <Footer />
             <Wrapper
-                marginTop={styleConstants.fixedMarginTop}
+                marginTop={['1rem', styleConstants.fixedMarginTopSmall]}
                 padding={props.wrapperBox || styleConstants.paddingWrapper}
                 width="100%"
                 alignItems="flex-start"
@@ -45,7 +45,7 @@ export const FormLayout = (props: IPageLayout): JSX.Element => {
                     margin={'auto'}
                     my="10"
                     px={[0, 10]}
-                    py={8}
+                    py={[3, 8]}
                     alignItems="center"
                     border={["none", styleConstants.defaultBorder]}
                     justifyContent="center"

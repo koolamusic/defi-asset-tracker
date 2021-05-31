@@ -14,15 +14,17 @@ export default function Page(): JSX.Element {
     useEffect(() => {
         async function useMora() {
             const balances = await Moralis.Web3.getAllERC20();
+            const user = await JSON.parse(localStorage.getItem('user') as string)
             const options = { chain: 'bsc' }
             const bnbBalances = await Moralis.Web3.getAllERC20(options);
             const ethBalance = await Moralis.Web3.getERC20(); // defaults to ETH
             const bnbBalance = await Moralis.Web3.getERC20({ chain: 'bsc' });
             const userEthNFTs = await Moralis.Web3.getNFTs();
             const userTrans = await Moralis.Web3.getTransactions();
+            const userTransBsc = await Moralis.Web3.getTransactions({ ...options, address: user.ethAddress });
             const numTx = await Moralis.Web3.getTransactionsCount();
 
-            return { balances, bnbBalances, ethBalance, bnbBalance, userEthNFTs, userTrans, numTx }
+            return { balances, userTransBsc, user, bnbBalances, ethBalance, bnbBalance, userEthNFTs, userTrans, numTx }
 
 
         }

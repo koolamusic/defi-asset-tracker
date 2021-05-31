@@ -97,7 +97,7 @@ export const Header: React.FC<{ isDefault?: boolean; isBordered?: boolean }> = (
     );
 };
 
-export const FormPageHeader: React.FC<{ formHeading: string; formSubHeading?: string }> = (props): JSX.Element => {
+export const FormPageHeader: React.FC<{ formHeading?: string; formSubHeading?: string }> = (props): JSX.Element => {
     const { formHeading, formSubHeading } = props;
     return (
         <React.Fragment>
@@ -105,7 +105,7 @@ export const FormPageHeader: React.FC<{ formHeading: string; formSubHeading?: st
                 {formHeading}
             </Heading>
             {formSubHeading && (
-                <Flex my="2" mb={4} justifyContent="flex-start">
+                <Flex my="2" mb={4} justifyContent="center">
                     <Text colorScheme="blue" fontSize="sm">{formSubHeading}</Text>
                 </Flex>
             )}
