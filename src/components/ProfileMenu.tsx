@@ -1,7 +1,7 @@
 import React from "react";
 import nookies from 'nookies'
 import { decode } from 'js-base64'
-import { Box, Button, Text, ButtonGroup, Menu, MenuButton, Image, MenuGroup, MenuItem, MenuList, useMediaQuery, HStack, Heading } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Menu, MenuButton, Image, MenuGroup, MenuList, useMediaQuery, HStack, Heading } from "@chakra-ui/react";
 import { styleConstants } from "src/theme";
 import { UserAccountDict } from "@lib/constants";
 import { formatAddress, formatBalance } from "@utils/helpers";
@@ -25,7 +25,7 @@ export function UserMenu(): JSX.Element {
         <Box
             position={["fixed", "fixed"]}
             justifyContent={["flex-end", "flex-end"]}
-            top={[0, 'inherit']}
+            top={[0, 2]}
             right={[0, 0]}
             width="max-content"
             padding={styleConstants.paddingWrapper}

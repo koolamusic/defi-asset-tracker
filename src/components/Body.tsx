@@ -121,8 +121,8 @@ export const Footer: React.FC = (): JSX.Element => {
     return (
         <Flex
             position={["fixed", "absolute"]}
-            justifyContent={["center", "center"]}
-            bottom={[0, 'inherit']}
+            justifyContent={["center", 'center', "flex-start", 'center']}
+            bottom={[0, 0, 'inherit']}
             width="100%"
             padding={styleConstants.paddingWrapper}
             zIndex="9999"
