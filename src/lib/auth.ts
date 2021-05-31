@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
 import { useMoralis } from "./moralis";
 import { generateRandomName } from '@utils/helpers'
+import { loginUser, logoutUser } from '@utils/user'
+import { UserAccountDict } from './constants';
 
 
 export function useAuth() {
@@ -15,32 +17,42 @@ export function useAuth() {
                 console.log(user.authenticated())
 
                 /* Assign new properties on signup */
-                const hasName = await user.get("name")
+                const hasName = await user.get("name") as UserAccountDict
 
                 if (!hasName) {
                     user.set("name", generateRandomName())
                     await user.save()
                 }
 
-                /* Temp persist user in local storage */
-                window.localStorage.setItem("user", JSON.stringify(user))
-                /* Temp persist user in local storage */
+                /* Use utility to add user info to cookies */
+                loginUser(user)
+                /* Use utility to add user info to cookies */
 
-                router.push('/')
+
+                /* Temp persist user in local storage */
+                // window.localStorage.setItem("user", JSON.stringify(user))
+
+                router.push('/tokens')
             } catch (e) {
                 console.error(e.message, e);
                 alert(e.message)
                 await Moralis?.User.logOut();
             }
         },
+        /* @todo Add User Context here and manage logout from one place or 
+        Make logout page handle logout on both client and server. */
 
         logout: async () => {
             try {
                 await Moralis?.User.logOut();
+
+                /* Exec user logout on cookies too and route to login */
+                // logoutUser({ user: null })
+
                 /* Temp persist user in local storage */
-                window.localStorage.removeItem("user")
-                /* Temp persist user in local storage */
-                router.push("/login");
+                // window.localStorage.removeItem("user")
+
+                // router.push("/login");
             } catch (e) {
                 console.error(e.message, e);
                 alert(e.message)

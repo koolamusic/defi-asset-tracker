@@ -20,17 +20,19 @@ import { FormPageHeader } from '@components/Body'
 import { InputField, PasswordField } from '@components/Fields'
 import { useForm } from 'react-hook-form'
 import * as Auth from '@utils/user'
+import { useAuth } from '@lib/auth'
 
 export default function Page(): JSX.Element {
-    // const { register, handleSubmit } = useForm()
+    const { login } = useAuth()
 
     const onLoginWithMetaMask = async (_data: any): Promise<void> => {
-        try {
-            alert("triggered")
-        } catch (error) {
-            alert(error)
-        }
+
+        login().then((res) => console.log(res)).catch((err) => {
+            alert(JSON.stringify(err))
+        })
+
     }
+
 
     return (
         <FormLayout>
