@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { ArrowForwardIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router'
+import { Url } from 'url'
 
 interface ITransactionList {
   customerName: string
@@ -50,7 +51,7 @@ const LineDivider = styled.div`
   background: #eee;
 `
 
-export const TransactionList: React.FC<ITransactionList> = (props) => {
+export const TransactionList: React.FC<Partial<ITransactionList>> = (props) => {
   const {
     customerName,
     customerStatus,
@@ -64,7 +65,7 @@ export const TransactionList: React.FC<ITransactionList> = (props) => {
 
   return (
     <React.Fragment>
-      <Flex onClick={() => router.push(cardLink)}>
+      <Flex onClick={() => router.push(cardLink as unknown as Url)}>
         <Box p="2" width="15%">
           <Avatar size="sm" name={paymentStatus} src="/" />
         </Box>
@@ -116,7 +117,9 @@ interface ITransactionSearch extends ITransactionList {
   amountDue: string
 }
 
-export const TransactionSearch: React.FC<ITransactionSearch> = (props) => {
+export const TransactionSearch: React.FC<Partial<ITransactionSearch>> = (
+  props
+) => {
   const {
     customerName,
     itemName,

@@ -1,11 +1,11 @@
 import React from 'react'
 import { NextPageContext } from 'next'
-import TokenPage from './tokens'
-
 import * as Auth from '@utils/user'
+import TokenPage from './tokens'
+import { TPageProps } from '@lib/constants'
 
-export default function Page(): JSX.Element {
-  return <TokenPage />
+export default function Page(props: TPageProps): JSX.Element {
+  return <TokenPage {...props} />
 }
 
 // Page.getInitialProps = async (ctx: NextPageContext) => {
@@ -17,10 +17,14 @@ export default function Page(): JSX.Element {
 // }
 
 export async function getServerSideProps(ctx: NextPageContext) {
-  await Auth.handleAuthenticatedRequest(ctx)
-  return {
-    props: {
-      user: null,
-    },
-  }
+  const userInfo = await Auth.handleAuthenticatedRequest(ctx)
+
+  /* Manage Nextjs screams!!! */
+  if (!userInfo)
+    return {
+      props: {
+        user: null,
+      },
+    }
+  return userInfo
 }

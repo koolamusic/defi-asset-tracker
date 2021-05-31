@@ -34,3 +34,7 @@ export interface UserAccountDict {
   ethBalance?: AccountBalanceDict
   bnbBalance?: AccountBalanceDict
 }
+
+export type TPageProps = JSX.IntrinsicAttributes & {
+  user: UserAccountDict
+}
