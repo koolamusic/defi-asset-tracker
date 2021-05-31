@@ -13,7 +13,6 @@ import {
   Stack,
   Button,
   ButtonGroup,
-  IconButton,
   useMediaQuery,
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
@@ -186,13 +185,12 @@ export const Footer: React.FC = (): JSX.Element => {
           <Button onClick={(_e) => router.push('/nfts')} mr="-px">
             NFTs
           </Button>
-          <Button onClick={(_e) => router.push('/login')} mr="-px">
+          <Button onClick={(_e) => router.push('/')} mr="-px">
             Transactions
           </Button>
           <Button onClick={(_e) => router.push('/profile')} mr="-px">
             Profile
           </Button>
-          {/* <IconButton aria-label="Add to friends" icon={<AddIcon />} /> */}
         </ButtonGroup>
       </Box>
     </Flex>

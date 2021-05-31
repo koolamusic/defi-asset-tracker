@@ -39,7 +39,7 @@ export const layerColorGen = (payload: string) =>
 const web3 = new Moralis.Web3()
 
 if (typeof window !== `undefined`) {
-  ;(window as any).web3 = web3
+  (window as any).web3 = web3
 
   console.log(Moralis)
 }
