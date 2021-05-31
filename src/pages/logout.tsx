@@ -1,6 +1,6 @@
 import { NextPageContext } from 'next';
 import axios from 'axios'
-import * as Auth from '../utils/auth'
+import * as Auth from '../utils/user'
 
 
 

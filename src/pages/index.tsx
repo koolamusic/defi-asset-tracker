@@ -7,7 +7,7 @@ import { FormLayout, SubmitButton } from '@components/Layout'
 import { FormPageHeader } from '@components/Body'
 import { InputField, PasswordField } from '@components/Fields';
 import { useForm } from 'react-hook-form';
-import * as Auth from '@utils/auth'
+import * as Auth from '@utils/user'
 
 
 export default function Page(): JSX.Element {

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useMoralis } from '@lib/moralis'
 import { TransactionLog } from '@components/TransactionLog'
 import { CompoundLayout } from '@components/Layout'
 import { FormPageHeader } from '@components/Body'
@@ -8,6 +9,27 @@ import { Box } from '@chakra-ui/react'
 
 
 export default function Page(): JSX.Element {
+    const { Moralis } = useMoralis()
+
+    useEffect(() => {
+        async function useMora() {
+            const balances = await Moralis.Web3.getAllERC20();
+            const options = { chain: 'bsc' }
+            const bnbBalances = await Moralis.Web3.getAllERC20(options);
+            const ethBalance = await Moralis.Web3.getERC20(); // defaults to ETH
+            const bnbBalance = await Moralis.Web3.getERC20({ chain: 'bsc' });
+            const userEthNFTs = await Moralis.Web3.getNFTs();
+            const userTrans = await Moralis.Web3.getTransactions();
+            const numTx = await Moralis.Web3.getTransactionsCount();
+
+            return { balances, bnbBalances, ethBalance, bnbBalance, userEthNFTs, userTrans, numTx }
+
+
+        }
+
+        useMora().then((val) => console.log(val))
+
+    }, [])
 
     return (
         <CompoundLayout>

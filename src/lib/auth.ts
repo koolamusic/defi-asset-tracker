@@ -30,6 +30,7 @@ export function useAuth() {
             } catch (e) {
                 console.error(e.message, e);
                 alert(e.message)
+                await Moralis?.User.logOut();
             }
         },
 

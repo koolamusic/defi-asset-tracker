@@ -60,3 +60,15 @@ export async function getCurrentAddressAsync(web3: { eth: { getAccounts: () => a
   const accounts = await web3.eth.getAccounts();
   return (accounts?.[0] ?? '').toLowerCase();
 }
+
+
+export function getAddressTxt(address: string) {
+  return `${address.substr(0, 4)}...${address.substr(
+    address.length - 4,
+    address.length
+  )}`;
+}
+
+export function toGwei(wei: number) {
+  return Math.round(wei / 1e9);
+}

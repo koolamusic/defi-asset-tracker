@@ -1,14 +1,14 @@
 /**
- * Authentication handler actions for the client application
- * Methods will include
+ * Handle User interaction with Next App
  * @method logout - clear cookies after call to api
  * @method loginUser - persist cookies to browser
- * @method getToken - get Token from user session
+ * @method getProfile - Profile from user session
  * @method isAuthenticated - Check that user is authenticated
  */
 
 import { NextPageContext } from "next";
 import Router from 'next/router';
+import { encode, decode } from 'js-base64'
 import { setCookie, destroyCookie, parseCookies } from 'nookies'
 
 export const settings = {
@@ -29,7 +29,8 @@ export const redirect = (target: string, ctx: NextPageContext) => {
 
 export const loginUser = async (target: string, payload: string) => {
     // Sign in a user by setting the cookie with the token received from Login Auth Request
-    setCookie(null, settings.profileKey, payload);
+    const userCookie = encode(JSON.stringify(payload))
+    setCookie(null, settings.profileKey, userCookie);
     window.location.replace(target);
 };
 
@@ -42,14 +43,15 @@ export const logoutUser = (ctx: NextPageContext | null, target = settings.loginR
 
 };
 
-export const getToken = (ctx: NextPageContext) => {
+export const getProfile = (ctx: NextPageContext) => {
     // Fetch the auth token for a user
     const cookies = parseCookies(ctx);
-    return cookies[settings.authKey]
+    const userCookie = JSON.parse(decode(cookies[settings.authKey]))
+    return userCookie
 };
 
 
-export const isAuthenticated = (ctx: NextPageContext) => !!getToken(ctx);
+export const isAuthenticated = (ctx: NextPageContext) => !!getProfile(ctx);
 
 export const redirectIfAuthenticated = (ctx: NextPageContext, target = '/') => {
     if (isAuthenticated(ctx)) {
