@@ -58,7 +58,6 @@ export const TransactionList: React.FC<ITransactionList> = (props) => {
     paymentStatus,
     overdueAmount,
     overdueStatus,
-    // iconName, iconSize,
     cardLink,
   } = props
   const router = useRouter()
@@ -167,14 +166,7 @@ export const TransactionSearch: React.FC<ITransactionSearch> = (props) => {
 }
 
 export const ProfileList: React.FC<ITransactionSearch> = (props) => {
-  const {
-    customerName,
-    itemName,
-    amountPaid,
-    paymentStatus,
-    amountDue,
-    overdueStatus,
-  } = props
+  const { customerName, itemName, paymentStatus } = props
 
   return (
     <>

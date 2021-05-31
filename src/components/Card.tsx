@@ -11,26 +11,25 @@ import {
   Button,
   PopoverBody,
 } from '@chakra-ui/react'
-import {
-  TJokesCollectionProps,
-  outerColorGen,
-  layerColorGen,
-} from '../utils/helpers'
+import { outerColorGen, layerColorGen } from '../utils/helpers'
 import { styleConstants } from '../theme'
 
 export interface JokeCardProps extends BoxProps {
-  jokes: TJokesCollectionProps
+  options: {
+    setup: string
+    punchline: string
+  }
 }
 
-export default function JokeCard({ jokes, ...props }: JokeCardProps) {
+export default function JokeCard({ options, ...props }: JokeCardProps) {
   return (
     <Box
       border={styleConstants.altBorder}
       boxShadow={styleConstants.lightShadow}
       borderRadius={styleConstants.defaultRadius}
-      background={`${layerColorGen(jokes.setup)}`}
-      borderColor={`${outerColorGen(jokes.setup)}`}
-      // color={`${outerColorGen(jokes.setup)}`}
+      background={`${layerColorGen(options.setup)}`}
+      borderColor={`${outerColorGen(options.setup)}`}
+      // color={`${outerColorGen(options.setup)}`}
       _hover={{
         opacity: '0.8',
         shadow: styleConstants.defaultShadow,
@@ -44,7 +43,7 @@ export default function JokeCard({ jokes, ...props }: JokeCardProps) {
     >
       <Box {...props}>
         <Text as="h1" fontSize="1.25rem">
-          {jokes.setup}
+          {options.setup}
         </Text>
 
         <Popover flip placement="top-start">
@@ -52,7 +51,7 @@ export default function JokeCard({ jokes, ...props }: JokeCardProps) {
             <Button
               position="absolute"
               bottom={5}
-              borderColor={`${outerColorGen(jokes.setup)}`}
+              borderColor={`${outerColorGen(options.setup)}`}
               variant="outline"
             >
               Get Punchline
@@ -62,7 +61,7 @@ export default function JokeCard({ jokes, ...props }: JokeCardProps) {
             <PopoverHeader fontWeight="600">Punchline!</PopoverHeader>
             {/* <PopoverArrow /> */}
             <PopoverCloseButton mt={1} />
-            <PopoverBody>{jokes.punchline}</PopoverBody>
+            <PopoverBody>{options.punchline}</PopoverBody>
           </PopoverContent>
         </Popover>
       </Box>

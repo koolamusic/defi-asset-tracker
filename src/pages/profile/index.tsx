@@ -1,12 +1,6 @@
 import React from 'react'
-import { TransactionLog } from '@components/TransactionLog'
 import { CompoundLayout, SubmitButton } from '@components/Layout'
-import { MultiStat } from '@components/Statistic'
-import {
-  ProfileList,
-  TransactionList,
-  TransactionSearch,
-} from '@components/List'
+import { ProfileList } from '@components/List'
 import { Avatar, Text, Box, VStack } from '@chakra-ui/react'
 
 export default function Page(): JSX.Element {

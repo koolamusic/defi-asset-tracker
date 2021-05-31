@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useMoralis } from '@lib/moralis'
 import { TransactionLog } from '@components/TransactionLog'
 import { CompoundLayout } from '@components/Layout'

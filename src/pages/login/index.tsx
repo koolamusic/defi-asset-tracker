@@ -1,25 +1,17 @@
 import React from 'react'
-import Link from 'next/link'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import {
   Box,
   Center,
   Text,
   Stack,
-  List,
-  ListItem,
   Image,
-  ListIcon,
   Button,
   useColorModeValue,
 } from '@chakra-ui/react'
-import { NextPageContext } from 'next'
 
-import { CompoundLayout, FormLayout, SubmitButton } from '@components/Layout'
+import { FormLayout } from '@components/Layout'
 import { FormPageHeader } from '@components/Body'
-import { InputField, PasswordField } from '@components/Fields'
-import { useForm } from 'react-hook-form'
-import * as Auth from '@utils/user'
 import { useAuth } from '@lib/auth'
 
 export default function Page(): JSX.Element {

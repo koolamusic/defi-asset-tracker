@@ -64,7 +64,12 @@ export default function Page(): JSX.Element {
 
         {/* === form input subsection  === */}
 
-        <SubmitButton mt={8} withIcon buttonName="Create Account" />
+        <SubmitButton
+          type="submit"
+          mt={8}
+          withIcon
+          buttonName="Create Account"
+        />
         <Box mb={6} mt={3} fontSize=".9rem" color="gray.600">
           <Link href="/login">Already have an account? Login</Link>
         </Box>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Main } from './Main'
 import { Wrapper } from './Container'
-import { Header, Footer } from './Body'
+import { Footer } from './Body'
 import { styleConstants } from '../theme'
 import { Box, Button, ButtonProps } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
