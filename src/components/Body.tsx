@@ -121,12 +121,12 @@ export const Footer: React.FC = (): JSX.Element => {
 
     return (
         <Flex
-            position={["fixed", "relative"]}
+            position={["fixed", "fixed"]}
             justifyContent={["center", "flex-end"]}
-            zIndex="999"
             bottom={[0, 'inherit']}
             width="100%"
             padding={styleConstants.paddingWrapper}
+            zIndex="9999"
             // bg={['white', 'inherit']}
             // border={[styleConstants.altBorder, "none"]}
             py={2}
@@ -135,8 +135,9 @@ export const Footer: React.FC = (): JSX.Element => {
             <Box
                 // bg="gray.100"
                 // colorScheme="white"
+                zIndex="9999"
                 p={2}
-                bg={['white', 'inherit']}
+                bg={['white', 'white']}
                 width={['100%', "max-content", "max-content"]}
                 border={styleConstants.altBorder}
                 borderRadius="lg"

@@ -69,7 +69,7 @@ export const styleConstants = {
   inputFontSize: '16px',
   inputPlaceHolder: '14px',
   topZindex: '99910',
-  tableBorder: '1px solid rgba(77, 77, 77, 0.3)',
+  tableBorder: '1px solid rgba(77, 77, 77, 0.089)',
   lightShadow: '6px 5px 10px rgba(0,50,30,0.03)',
   blue: '#0e1b7a',
   main: 'blue.800',

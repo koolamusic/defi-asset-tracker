@@ -40,6 +40,17 @@ export default function Page(): JSX.Element {
                 iconSize="Rudimentaty"
                 cardLink="/tokens"
             />
+            <TransactionList
+                customerName="9x027373761011"
+                customerStatus="Paid"
+                amount={3202}
+                paymentStatus="Ethereum"
+                overdueAmount="3113"
+                overdueStatus="Rudimentaty"
+                iconName="arrow-forward"
+                iconSize="Rudimentaty"
+                cardLink="/tokens"
+            />
 
         </CompoundLayout>
     )

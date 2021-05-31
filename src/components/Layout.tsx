@@ -72,17 +72,17 @@ export const CompoundLayout = (props: IPageLayout): JSX.Element => {
                 {/* === section to render the form ==== */}
                 <Main
                     width={["100%", "40rem"]}
-                    // bg={['inherit', '#ffffff44']}
+                    bg={['inherit', '#ffffff44']}
                     margin={'auto'}
                     my="10"
                     marginTop={styleConstants.fixedMarginTop}
                     px={[2, 10]}
                     py={8}
                     alignItems="center"
-                    // border={["none", styleConstants.altBorder]}
+                    border={["none", styleConstants.tableBorder]}
                     justifyContent="center"
-                // boxShadow={["none", styleConstants.lightShadow]}
-                // borderRadius={styleConstants.formBorderRadius}
+                    boxShadow={["none", styleConstants.lightShadow]}
+                    borderRadius={styleConstants.formBorderRadius}
                 >
                     {props.children}
                 </Main>
