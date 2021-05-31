@@ -59,7 +59,7 @@ export const styleConstants = {
   defaultBorder: '1px solid #1e31de',
   headerHeight: '60px',
   buttonHeight: '48px',
-  fixedMarginTop: '3rem',
+  fixedMarginTop: '5rem',
   paddingWrapper: '.5rem 2rem',
   altBorder: '1px solid #e5ebff',
   thickBorder: '1px solid #0e1b7a',

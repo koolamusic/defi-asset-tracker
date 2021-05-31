@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { ArrowForwardIcon, CheckIcon } from '@chakra-ui/icons'
+import { ArrowForwardIcon } from '@chakra-ui/icons'
 import {
     Box,
     Center,
@@ -79,10 +79,6 @@ export default function Page(): JSX.Element {
                             fontWeight="700"
                             rightIcon={<ArrowForwardIcon />}
                             justifyContent={'space-between'}
-
-
-
-                            // bg={'green.400'}
                             color={'white'}
                             borderRadius="4px"
                             size="lg"
