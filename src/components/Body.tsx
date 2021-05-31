@@ -5,7 +5,6 @@ import styled from '@emotion/styled';
 import { styleConstants } from '../theme';
 import nookies from 'nookies'
 import { decode } from 'js-base64'
-import { AddIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
 
 const HeaderBox = styled(Box)`
