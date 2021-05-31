@@ -12,7 +12,7 @@ export default function Page(): JSX.Element {
     return (
         <CompoundLayout>
             <FormPageHeader
-                formHeading="Hello Andrew"
+                formHeading="Your Tokens"
                 formSubHeading="Monitor ROI for your tokens on the BSC and ETH Network"
             />
             <MultiStat />

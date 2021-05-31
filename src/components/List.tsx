@@ -47,7 +47,7 @@ const LineDivider = styled.div`
 `
 
 
-const TransactionList: React.FC<ITransactionList> = (props) => {
+export const TransactionList: React.FC<ITransactionList> = (props) => {
     const { customerName, customerStatus, amount, paymentStatus, overdueAmount, overdueStatus,
         // iconName, iconSize,
         cardLink } = props
@@ -107,7 +107,7 @@ interface ITransactionSearch extends ITransactionList {
 }
 
 
-const TransactionSearch: React.FC<ITransactionSearch> = (props) => {
+export const TransactionSearch: React.FC<ITransactionSearch> = (props) => {
     const { customerName, itemName, amountPaid, paymentStatus, amountDue, overdueStatus } = props
 
 
@@ -141,6 +141,38 @@ const TransactionSearch: React.FC<ITransactionSearch> = (props) => {
     )
 }
 
-// export the components as modules to be resuable by other component
-// export default CustomerList
-export { TransactionList, TransactionSearch }
+
+
+export const ProfileList: React.FC<ITransactionSearch> = (props) => {
+    const { customerName, itemName, amountPaid, paymentStatus, amountDue, overdueStatus } = props
+
+
+    return (
+        <>
+            <Flex {...props}>
+                <Box width="55%">
+                    <StatusText>{customerName}</StatusText>
+                    <Heading as="h5" fontSize="sm">{itemName}</Heading>
+                </Box>
+
+                <Box width="40%">
+                    {/* <Heading as="h6" size="xs">{amountPaid}</Heading> */}
+                    <Text fontSize="xs" color="blue.700">{paymentStatus}</Text>
+                </Box>
+
+                {/* <Box width="20%">
+                    <Heading as="h6" size="xs">{amountDue}</Heading>
+                    <Text fontWeight="bold" fontSize="xs" color="red.700">{overdueStatus}</Text>
+                </Box> */}
+
+                <Box width="5%">
+                    <Stack isInline>
+                        <ChevronRightIcon />
+                    </Stack>
+
+                </Box>
+            </Flex>
+            <LineDivider />
+        </>
+    )
+}
