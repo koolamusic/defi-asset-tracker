@@ -131,7 +131,7 @@ export const FormPageHeader: React.FC<{
   const { formHeading, formSubHeading } = props
   return (
     <React.Fragment>
-      <Heading as="h3" colorScheme="blue" fontWeight="500" size="lg">
+      <Heading as="h3" colorScheme="blue" size="lg">
         {formHeading}
       </Heading>
       {formSubHeading && (

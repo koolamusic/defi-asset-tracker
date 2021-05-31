@@ -4,7 +4,7 @@ import { createBreakpoints } from '@chakra-ui/theme-tools'
 const fonts = {
   mono: `'Menlo', Monaco, Fira Code, Ubuntu Mono, monospace`,
   heading: `"Space Grotesk Medium", Cantarell, Oxygen, Ubuntu, sans-serif`,
-  body: `"Roobert - BC", Segoe UI, Oxygen, Ubuntu, Roboto, Fira Sans, Helvetica Neue, sans-serif`,
+  body: `"DeFina", Segoe UI, Oxygen, Ubuntu, Roboto, Fira Sans, Helvetica Neue, sans-serif`,
 }
 const fontSizes = {
   xs: '0.65rem',
