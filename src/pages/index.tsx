@@ -17,5 +17,10 @@ export default function Page(): JSX.Element {
 // }
 
 export async function getServerSideProps(ctx: NextPageContext) {
-  return await Auth.handleAuthenticatedRequest(ctx)
+  await Auth.handleAuthenticatedRequest(ctx)
+  return {
+    props: {
+      user: null,
+    },
+  }
 }
