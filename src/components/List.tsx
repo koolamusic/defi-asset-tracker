@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled'
-import Link from 'next/link'
-import { Box, Stack, Avatar, Heading, Text, Icon, Flex as ChFlex } from '@chakra-ui/react'
+import { Box, Stack, Avatar, Heading, Text, Flex as ChFlex } from '@chakra-ui/react'
 import { ArrowForwardIcon, ChevronRightIcon } from '@chakra-ui/icons'
+import { useRouter } from 'next/router';
 
 
 interface ITransactionList {
@@ -51,42 +51,41 @@ export const TransactionList: React.FC<ITransactionList> = (props) => {
     const { customerName, customerStatus, amount, paymentStatus, overdueAmount, overdueStatus,
         // iconName, iconSize,
         cardLink } = props
+    const router = useRouter()
 
     return (
-        <Link href={cardLink} >
-            <React.Fragment>
+        <React.Fragment>
 
-                <Flex>
-                    <Box p="2" width="15%">
-                        <Avatar size="sm" name={paymentStatus} src="/" />
-                    </Box>
+            <Flex onClick={() => router.push(cardLink)}>
+                <Box p="2" width="15%">
+                    <Avatar size="sm" name={paymentStatus} src="/" />
+                </Box>
 
-                    <Box width="40%">
-                        <StatusText>{customerStatus}</StatusText>
-                        <Heading as="h5" fontSize="sm">{customerName}</Heading>
-                    </Box>
+                <Box width="40%">
+                    <StatusText>{customerStatus}</StatusText>
+                    <Heading as="h5" fontSize="sm">{customerName}</Heading>
+                </Box>
 
-                    <Box width="20%">
-                        <Heading as="h6" size="xs">{amount}</Heading>
-                        <Text fontSize="xs" color="green.600">{paymentStatus}</Text>
-                    </Box>
+                <Box width="20%">
+                    <Heading as="h6" size="xs">{amount}</Heading>
+                    <Text fontSize="xs" color="green.600">{paymentStatus}</Text>
+                </Box>
 
-                    <Box width="20%">
-                        <Heading as="h6" size="xs">{overdueAmount}</Heading>
-                        <Text fontWeight="bold" fontSize="xs" color="red.700">{overdueStatus}</Text>
-                    </Box>
+                <Box width="20%">
+                    <Heading as="h6" size="xs">{overdueAmount}</Heading>
+                    <Text fontWeight="bold" fontSize="xs" color="red.700">{overdueStatus}</Text>
+                </Box>
 
-                    <Box width="5%">
-                        <Stack isInline>
-                            {/* <Icon name={iconName} size={iconSize} /> */}
-                            <ArrowForwardIcon />
-                        </Stack>
+                <Box width="5%">
+                    <Stack isInline>
+                        {/* <Icon name={iconName} size={iconSize} /> */}
+                        <ArrowForwardIcon />
+                    </Stack>
 
-                    </Box>
-                </Flex>
-                <LineDivider />
-            </React.Fragment>
-        </Link>
+                </Box>
+            </Flex>
+            <LineDivider />
+        </React.Fragment>
 
 
 
