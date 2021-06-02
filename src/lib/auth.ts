@@ -5,71 +5,71 @@ import { loginUser } from '@utils/user'
 import { UserAccountDict } from './constants'
 
 export function useAuth() {
-  const { Moralis } = useMoralis()
-  const router = useRouter()
+    const { Moralis } = useMoralis()
+    const router = useRouter()
 
-  return {
-    login: async () => {
-      try {
-        const user = await Moralis?.Web3.authenticate()
+    return {
+        login: async () => {
+            try {
+                const user = await Moralis?.Web3.authenticate()
 
-        /* Assign new properties on signup */
-        const hasName = await user.get('name')
+                /* Assign new properties on signup */
+                const hasName = await user.get('name')
 
-        if (!hasName) {
-          user.set('name', generateRandomName())
-          await user.save()
-        }
+                if (!hasName) {
+                    user.set('name', generateRandomName())
+                    await user.save()
+                }
 
-        /* Use utility to add user info to cookies */
-        const userToObject = JSON.parse(JSON.stringify(user)) as UserAccountDict
+                /* Use utility to add user info to cookies */
+                const userToObject = JSON.parse(JSON.stringify(user)) as UserAccountDict
 
-        userToObject.ethBalance = await Moralis.Web3.getERC20()
-        userToObject.bnbBalance = await Moralis.Web3.getERC20({ chain: 'bsc' })
+                userToObject.ethBalance = await Moralis.Web3.getERC20()
+                userToObject.bnbBalance = await Moralis.Web3.getERC20({ chain: 'bsc' })
 
-        /* Use utility to add user info to cookies */
-        loginUser(userToObject)
+                /* Use utility to add user info to cookies */
+                loginUser(userToObject)
 
-        // /* Upon login build some default profile object and add to context */
-        // const profile: UserAccountDict = {
-        //     ...user,
-        //     ethBalance,
-        //     bnbBalance
-        // }
-        // context.update(profile)
+                // /* Upon login build some default profile object and add to context */
+                // const profile: UserAccountDict = {
+                //     ...user,
+                //     ethBalance,
+                //     bnbBalance
+                // }
+                // context.update(profile)
 
-        /* Temp persist user in local storage */
-        // window.localStorage.setItem("user", JSON.stringify(user))
+                /* Temp persist user in local storage */
+                // window.localStorage.setItem("user", JSON.stringify(user))
 
-        router.push('/tokens')
-      } catch (e) {
-        console.error(e.message, e)
-        alert(e.message)
-        await Moralis?.User.logOut()
-      }
-    },
-    /* @todo Add User Context here and manage logout from one place or 
-        Make logout page handle logout on both client and server. */
+                router.push('/tokens')
+            } catch (e) {
+                console.error(e.message, e)
+                alert(e.message)
+                await Moralis?.User.logOut()
+            }
+        },
+        /* @todo Add User Context here and manage logout from one place or 
+            Make logout page handle logout on both client and server. */
 
-    logout: async () => {
-      try {
-        await Moralis?.User.logOut()
+        logout: async () => {
+            try {
+                await Moralis?.User.logOut()
 
-        /* Exec user logout on cookies too and route to login */
-        // logoutUser({ user: null })
+                /* Exec user logout on cookies too and route to login */
+                // logoutUser({ user: null })
 
-        /* Temp persist user in local storage */
-        // window.localStorage.removeItem("user")
+                /* Temp persist user in local storage */
+                // window.localStorage.removeItem("user")
 
-        // router.push("/login");
-      } catch (e) {
-        console.error(e.message, e)
-        alert(e.message)
-      }
-    },
+                router.push("/login");
+            } catch (e) {
+                console.error(e.message, e)
+                alert(e.message)
+            }
+        },
 
-    currentUser: () => {
-      return Moralis?.User.current()
-    },
-  }
+        currentUser: () => {
+            return Moralis?.User.current()
+        },
+    }
 }

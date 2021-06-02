@@ -38,3 +38,18 @@ export interface UserAccountDict {
 export type TPageProps = JSX.IntrinsicAttributes & {
   user: UserAccountDict
 }
+
+export interface CoinStatProps {
+  icon: React.ElementType
+  accentColor: string
+  data: {
+    symbol: string
+    label: string
+    currency: string
+    value: number
+    change: {
+      value: number
+      percent: number
+    }
+  }
+}

@@ -80,3 +80,7 @@ export function getAddressTxt(address: string) {
 export function toGwei(wei: number) {
   return Math.round(wei / 1e9)
 }
+
+export function formatNumberIntl(value: number) {
+  return new Intl.NumberFormat('en-US', { style: 'decimal', currency: 'USD' }).format(value)
+}

@@ -1,15 +1,31 @@
 import React from 'react'
+import { destroyCookie } from 'nookies'
 import { CompoundLayout, SubmitButton } from '@components/Layout'
 import { ProfileList } from '@components/List'
 import { Avatar, Text, Box, VStack } from '@chakra-ui/react'
+import { useAuth } from '@lib/auth'
 
 export default function Page(): JSX.Element {
+  const { logout } = useAuth()
+
+  const handleLogout = async () => {
+    try {
+      // const cookies = nookies.get(null)
+      // const profile = cookies['__app.user']
+      await destroyCookie(null, '__app.user')
+
+      await logout()
+    } catch (error) {
+      alert(JSON.stringify(error))
+    }
+  }
+
   return (
     <CompoundLayout>
       <VStack w="100%">
         <VStack p="2" width="100%">
           <Avatar size="md" name="MetaId" src="/" />
-          <Text pt={3}>Sharay Reed</Text>
+          <Text pt={3}>Andrew Miracle</Text>
         </VStack>
         <Box py={4} />
 
@@ -30,7 +46,13 @@ export default function Page(): JSX.Element {
             // overdueAmount="3113"
             // amount="3202"
           />
-          <SubmitButton type="button" mt={8} withIcon buttonName="Logout" />
+          <SubmitButton
+            onClick={() => handleLogout()}
+            type="button"
+            mt={8}
+            withIcon
+            buttonName="Logout"
+          />
         </Box>
       </VStack>
     </CompoundLayout>
