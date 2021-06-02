@@ -67,7 +67,8 @@ export const CompoundLayout = (props: IPageLayout): JSX.Element => {
             >
                 {/* === section to render the form ==== */}
                 <Main
-                    width={['100%', '5xl']}
+                    maxW={['100%', '3xl', '5xl']}
+                    width="100%"
                     minH="80vh"
                     bg={['inherit', '#ffffffe4']}
                     margin={'auto'}

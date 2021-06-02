@@ -53,22 +53,8 @@ export const HeaderElement: React.FC = () => {
 
     return (
         <>
-            <Link href="/">
-                <Heading
-                    as="h1"
-                    cursor="pointer"
-                    bgGradient="linear(to-l, #07522c,#FF0080)"
-                    bgClip="text"
-                    letterSpacing="0.2rem"
-                    fontFamily="Dosis"
-                    size="sm"
-                >
-                    ALXSERI
-                </Heading>
-            </Link>
-
             {hasProfile && (
-                <Stack isInline alignItems="center" justifyContent="flex-end" width="130px">
+                <Stack isInline alignItems="center" justifyContent="flex-end" width={['120px', '120px', '130px']}>
                     <Tooltip bg="blue.600" hasArrow label={profile} placement="bottom">
                         <Avatar cursor="pointer" name={profile} size="sm">
                             <AvatarBadge p={1} bg="blue.500" />
