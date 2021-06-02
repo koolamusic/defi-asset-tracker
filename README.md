@@ -1,27 +1,76 @@
-# Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui) and Typescript
+# DeFi Asset Tracker
 
-This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app with typescript.
-
-Next.js and chakra-ui have built-in TypeScript declarations, so we'll get autocompletion for their modules straight away.
-
-We are connecting the Next.js `_app.js` with `chakra-ui`'s Provider and theme so the pages can have app-wide dark/light mode. We are also creating some components which shows the usage of `chakra-ui`'s style props.
+A Blockchain DApp to track your tokens, NFTs and assets across the `BSC` `ETH` and `POLYGON` Network. Built with <https://moralis.io>
 
 ## Deploy your own
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui-typescript&project-name=with-chakra-ui-typescript&repository-name=with-chakra-ui-typescript)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/koolamusic/defi-asset-tracker&project-name=defi-asset-tracker&repository-name=defi-asset-tracker)
 
-## How to use
+## About Moralis
 
-### Using `create-next-app`
+For more information on Moralis and its features, see [the website](https://moralis.io), [the JavaScript guide](https://docs.moralis.io), [the Cloud Code guide](https://docs.moralis.io/cloudcode) or [Web3 Reference](https://docs.moralis.io/web3).
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+### Getting Started
 
-```bash
-npx create-next-app --example with-chakra-ui-typescript with-chakra-ui-typescript-app
-# or
-yarn create next-app --example with-chakra-ui-typescript with-chakra-ui-typescript-app
+The easiest way to integrate the Moralis SDK into your JavaScript project is through the [npm module](https://npmjs.org/moralis).
+However, if you want to use a pre-compiled file, you can fetch it from [unpkg](https://unpkg.com). The development version is available at [https://unpkg.com/moralis/dist/moralis.js](https://unpkg.com/moralis/dist/moralis.js), and the minified production version is at [https://unpkg.com/moralis/dist/moralis.min.js](https://unpkg.com/moralis/dist/moralis.min.js).
+
+### Using Moralis on Different Platforms
+
+The JavaScript ecosystem is wide and incorporates a large number of platforms and execution environments. To handle this, the Moralis npm module contains special versions of the SDK tailored to use in Node.js and [React Native](https://facebook.github.io/react-native/) environments. Not all features make sense in all environments, so using the appropriate package will ensure that items like local storage, user sessions, and HTTP requests use appropriate dependencies. For server side rendered applications, you may set the `SERVER_RENDERING` variable to prevent warnings at runtime.
+
+To use the npm modules for a browser based application, include it as you normally would:
+
+```js
+const Moralis = require('moralis')
+// ES6 Minimized
+import Moralis from 'moralis/dist/moralis.min.js'
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+For server-side applications or Node.js command line tools, include `'moralis/node'`:
+
+```js
+// In a node.js environment
+const Moralis = require('moralis/node')
+```
+
+For React Native applications, include `'moralis/react-native.js'`:
+
+```js
+// In a React Native application
+const Moralis = require('moralis/react-native.js')
+
+// On React Native >= 0.50 and Moralis >= 1.11.0, set the Async
+const AsyncStorage = require('react-native').AsyncStorage
+Moralis.setAsyncStorage(AsyncStorage)
+```
+
+For WeChat miniprogram, include `'moralis/weapp'`:
+
+```js
+// In a WeChat miniprogram
+const Moralis = require('moralis/weapp')
+```
+
+If you want to use a pre-compiled file, you can fetch it from [unpkg](https://unpkg.com). The development version is available at [https://unpkg.com/moralis/dist/moralis.weapp.js](https://unpkg.com/moralis/dist/moralis.weapp.js), and the minified production version is at [https://unpkg.com/moralis/dist/moralis.weapp.min.js](https://unpkg.com/moralis/dist/moralis.weapp.min.js).
+
+## Tasks
+
+- [x] Authenticate user with MetaMask
+- [x] Authentication Guard for routes
+- [x] Account summary Topbar
+- [ ] Token Summary Statistic
+- [ ] Tokens List page
+- [ ] Tokens Detail page
+- [ ] Transaction Log page
+- [ ] Profile Page
+- [ ] Account Logout Utility
+- [ ] NFTs collection page
+- [ ] Refresh Assets and Token `onChain` Network change - when user changes their network in **MetaMask**
+- [ ] Realtime Transactions Subscriptions - Listen for new transactions performed with the user address on the blockchain in realtime
+- [ ] 100% Dark mode compatibility
+- [ ] Ability to filter collections by `chain` `BSC | ETH | POLYGON`
+- [ ] Transactions search and filter feature
+- [ ] Refresh on Wallet Address change in **MetaMask**
