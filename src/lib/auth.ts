@@ -2,7 +2,8 @@ import { useRouter } from 'next/router'
 import { useMoralis } from './moralis'
 import { generateRandomName } from '@utils/helpers'
 import { loginUser } from '@utils/user'
-import { UserAccountDict } from './constants'
+import { config, UserAccountDict } from './constants'
+import { destroyCookie } from 'nookies'
 
 export function useAuth() {
     const { Moralis } = useMoralis()
@@ -56,7 +57,8 @@ export function useAuth() {
                 await Moralis?.User.logOut()
 
                 /* Exec user logout on cookies too and route to login */
-                // logoutUser({ user: null })
+                await destroyCookie(null, config.profileKey)
+
 
                 /* Temp persist user in local storage */
                 // window.localStorage.removeItem("user")

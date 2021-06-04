@@ -2,6 +2,14 @@ export const MORALIS_APPLICATION_ID =
   process.env.NEXT_PUBLIC_MORALIS_APPLICATION_ID
 export const MORALIS_SERVER_URL = process.env.NEXT_PUBLIC_MORALIS_SERVER_URL
 
+/* Stubs for config variables */
+export const config = {
+  loginRoute: '/login',
+  rootRoute: '/tokens',
+  authKey: '__app.sid',
+  profileKey: '__app.user',
+}
+
 export interface AccountBalanceDict {
   balance: string
   decimals: number
@@ -51,5 +59,15 @@ export interface CoinStatProps {
       value: number
       percent: number
     }
+  }
+}
+
+export interface TokenStatProps {
+  icon: React.ElementType
+  accentColor: string
+  data: {
+    symbol: string
+    label: string
+    value: number
   }
 }
