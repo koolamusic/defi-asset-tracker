@@ -4,7 +4,9 @@ A Blockchain DApp to track your tokens, NFTs and assets across the `BSC` `ETH` a
 
 ## Deploy your own
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Head over to <https://moralis.io> sign up for beta access and add your `server_url` to the `.env`
+
+Deploy this repo using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/koolamusic/defi-asset-tracker&project-name=defi-asset-tracker&repository-name=defi-asset-tracker)
 
