@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useMoralis } from '@lib/moralis'
 import { CompoundLayout, Loader } from '@components/Layout'
 import { FormPageHeader } from '@components/Body'
-import { MultiStat } from '@components/Statistic'
 import { TokenStat } from '@components/ChainReports'
-import { TransactionList, TransactionSearch } from '@components/List'
+import { CoinList, TransactionSearch } from '@components/List'
 import * as Auth from '@utils/user'
 import { Box, SimpleGrid } from '@chakra-ui/react'
 import { NextPageContext } from 'next'
@@ -32,12 +31,16 @@ export default function Page(props: TPageProps): JSX.Element {
       const ethBalance = await Moralis.Web3.getERC20() // defaults to ETH
       const bnbBalance = await Moralis.Web3.getERC20({ chain: 'bsc' })
       const userEthNFTs = await Moralis.Web3.getNFTs()
-      const userTrans = await Moralis.Web3.getTransactions({
+      const userTransEth = await Moralis.Web3.getTransactions({
         ...ethOptions,
         address: user.ethAddress,
       })
       const userTransBsc = await Moralis.Web3.getTransactions({
         ...bnbOptions,
+        address: user.ethAddress,
+      })
+      const userTransMatic = await Moralis.Web3.getTransactions({
+        ...maticOptions,
         address: user.ethAddress,
       })
       const numTx = await Moralis.Web3.getTransactionsCount()
@@ -58,18 +61,19 @@ export default function Page(props: TPageProps): JSX.Element {
           value: bnbBalances.length,
         },
       ]
+
+      const coinBase = [...ethBalances, ...maticBalances, ...bnbBalances]
       return {
-        ethBalances,
-        bnbBalances,
-        maticBalances,
-        userTransBsc,
         user,
+        coinBase,
         ethBalance,
         bnbBalance,
         userEthNFTs,
-        userTrans,
         numTx,
         tokenStat,
+        userTransEth,
+        userTransBsc,
+        userTransMatic,
       }
     }
 
@@ -89,7 +93,7 @@ export default function Page(props: TPageProps): JSX.Element {
     <CompoundLayout>
       <FormPageHeader
         formHeading="Your Tokens"
-        formSubHeading="Monitor ROI for your tokens on the BSC and ETH Network"
+        formSubHeading="Get an overview of all your tokens across various chains here"
       />
       {/* /////////////// Network Token Balance Stat ///////////// */}
       <Box mx="auto" my={6}>
@@ -102,19 +106,18 @@ export default function Page(props: TPageProps): JSX.Element {
       </Box>
       {/* /////////////// Network Token Balance Stat ///////////// */}
 
-      <MultiStat />
       <Box py={4} />
-      <TransactionSearch
-        // customerName="0x33481f1383131"
-        // customerStatus="Paid"
-        // amountDue="3202"
-        // amountPaid="3113"
-        amount="3202"
-        // paymentStatus="Binance Chain"
-        // overdueStatus="Rudimentaty"
-        // cardLink="/"
-      />
-      <TransactionList
+      {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
+      <Box mx="auto" my={6}>
+        {assets.coinBase.map((asset, index) => {
+          // const { symbol, name, tokenAddress, contractType, balance } = asset
+
+          return <CoinList {...asset} />
+        })}
+      </Box>
+      {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
+
+      {/* <CoinList
         customerName="9x027373761011"
         customerStatus="Paid"
         amount={3202}
@@ -123,16 +126,7 @@ export default function Page(props: TPageProps): JSX.Element {
         overdueStatus="Rudimentaty"
         iconName="arrow-forward"
         cardLink="/tokens"
-      />
-      <TransactionList
-        customerName="9x027373761011"
-        customerStatus="Paid"
-        amount={3202}
-        paymentStatus="Ethereum"
-        overdueStatus="Rudimentaty"
-        iconName="arrow-forward"
-        cardLink="/tokens"
-      />
+      /> */}
     </CompoundLayout>
   )
 }

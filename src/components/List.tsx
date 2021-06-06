@@ -7,6 +7,11 @@ import {
   Heading,
   Text,
   Flex as ChFlex,
+  Badge,
+  Tag,
+  TagLabel,
+  Link,
+  IconButton,
 } from '@chakra-ui/react'
 import { ArrowForwardIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router'
@@ -52,15 +57,7 @@ const LineDivider = styled.div`
 `
 
 export const TransactionList: React.FC<Partial<ITransactionList>> = (props) => {
-  const {
-    customerName,
-    customerStatus,
-    amount,
-    paymentStatus,
-    overdueAmount,
-    overdueStatus,
-    cardLink,
-  } = props
+  const { customerName, customerStatus, amount, paymentStatus, overdueAmount, overdueStatus, cardLink } = props
   const router = useRouter()
 
   return (
@@ -117,17 +114,8 @@ interface ITransactionSearch extends ITransactionList {
   amountDue: string
 }
 
-export const TransactionSearch: React.FC<Partial<ITransactionSearch>> = (
-  props
-) => {
-  const {
-    customerName,
-    itemName,
-    amountPaid,
-    paymentStatus,
-    amountDue,
-    overdueStatus,
-  } = props
+export const TransactionSearch: React.FC<Partial<ITransactionSearch>> = (props) => {
+  const { customerName, itemName, amountPaid, paymentStatus, amountDue, overdueStatus } = props
 
   return (
     <>
@@ -201,5 +189,59 @@ export const ProfileList: React.FC<Partial<ITransactionSearch>> = (props) => {
       </Flex>
       <LineDivider />
     </>
+  )
+}
+
+export const CoinList: React.FC<unknown> = (props) => {
+  const { symbol, name, tokenAddress, contractType, balance } = props
+  const router = useRouter()
+
+  return (
+    <React.Fragment>
+      <Flex>
+        <Box p="2" width="20%">
+          <StatusText>{name}</StatusText>
+          <Badge fontSize="sm">{symbol}</Badge>
+        </Box>
+
+        <Box width="35%">
+          <StatusText>Balance:</StatusText>
+          <Heading as="h5" fontSize="sm">
+            {balance} <span>{symbol}</span>
+          </Heading>
+        </Box>
+
+        <Box width="30%">
+          <Text fontSize="xs" color="green.600">
+            Token Address:
+          </Text>
+          <Badge as="h6" size="xs">
+            <Link
+              href={`https://etherscan.com/${tokenAddress}`}
+              to={`https://etherscan.com/${tokenAddress}`}
+              isExternal
+            >
+              {tokenAddress}
+            </Link>
+          </Badge>
+        </Box>
+
+        <Box width="10%">
+          <Text fontWeight="bold" fontSize="xs" color="red.700">
+            Contract Type:
+          </Text>
+          <Heading as="h6" size="xs">
+            {contractType}
+          </Heading>
+        </Box>
+
+        <Box width="5%" onClick={() => router.push(`/token/${tokenAddress}`)}>
+          <Stack isInline>
+            <IconButton variant="ghost" size="md" aria-label="view token detail" icon={<ChevronRightIcon />} />
+          </Stack>
+        </Box>
+      </Flex>
+      <LineDivider />
+    </React.Fragment>
   )
 }
