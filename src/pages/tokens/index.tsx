@@ -7,8 +7,7 @@ import { CoinList, TransactionSearch } from '@components/List'
 import * as Auth from '@utils/user'
 import { Box, SimpleGrid } from '@chakra-ui/react'
 import { NextPageContext } from 'next'
-import { UserAccountDict, TPageProps, TokenStatProps } from '@lib/constants'
-import { icons } from './_data'
+import { UserAccountDict, icons, TPageProps, TokenStatProps } from '@lib/constants'
 
 export default function Page(props: TPageProps): JSX.Element {
   const [assets, setAssets] = useState<Record<string, any>>({})

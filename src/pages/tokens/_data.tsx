@@ -1,23 +1,4 @@
-import { FaEthereum } from 'react-icons/fa'
 import { CoinStatProps, TokenStatProps } from '@lib/constants'
-import { IcBinance, IcPolygonMatic } from '@components/_icons'
-
-type Icons = Record<string, { icon: React.ElementType; color: string }>
-
-export const icons: Icons = {
-  MATIC: {
-    icon: IcPolygonMatic,
-    color: '#8f5ae8',
-  },
-  ETH: {
-    icon: FaEthereum,
-    color: '#3c3c3d',
-  },
-  BSC: {
-    icon: IcBinance,
-    color: '#121213',
-  },
-}
 
 export const data: TokenStatProps['data'][] = [
   {

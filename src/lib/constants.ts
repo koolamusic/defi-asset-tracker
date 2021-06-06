@@ -1,3 +1,6 @@
+import { FaEthereum } from 'react-icons/fa'
+import { IcBinance, IcPolygonMatic } from '@components/_icons'
+
 export const MORALIS_APPLICATION_ID =
   process.env.NEXT_PUBLIC_MORALIS_APPLICATION_ID
 export const MORALIS_SERVER_URL = process.env.NEXT_PUBLIC_MORALIS_SERVER_URL
@@ -43,6 +46,7 @@ export interface UserAccountDict {
   bnbBalance?: AccountBalanceDict
 }
 
+type Icons = Record<string, { icon: React.ElementType; color: string }>
 export type TPageProps = JSX.IntrinsicAttributes & {
   user: UserAccountDict
 }
@@ -73,3 +77,18 @@ export interface TokenStatProps {
 }
 
 export type TNetwork = 'ETH' | 'BSC' | 'MATIC'
+
+export const icons: Icons = {
+  MATIC: {
+    icon: IcPolygonMatic,
+    color: '#8f5ae8',
+  },
+  ETH: {
+    icon: FaEthereum,
+    color: '#3c3c3d',
+  },
+  BSC: {
+    icon: IcBinance,
+    color: '#121213',
+  },
+}

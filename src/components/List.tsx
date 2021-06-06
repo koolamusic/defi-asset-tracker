@@ -12,12 +12,13 @@ import {
   TagLabel,
   Link,
   IconButton,
+  Circle,
 } from '@chakra-ui/react'
 import { ArrowForwardIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router'
 import { Url } from 'url'
 import { formatAddress, formatBalanceToDecimal, formatBalance } from '@utils/helpers'
-import { TNetwork } from '@lib/constants'
+import { TNetwork, icons } from '@lib/constants'
 
 interface ITransactionList {
   customerName: string
@@ -217,22 +218,21 @@ export const CoinList: React.FC<unknown> = (props: CoinListProps) => {
   return (
     <React.Fragment>
       <Flex>
-        <Box p="2" width="20%">
-          <StatusText>{name}</StatusText>
-          <Badge fontSize="sm">{symbol}</Badge>
+        <Box p="2" width="5%">
+          <Circle bg={icons[network].color} color="white" rounded="full" size="6">
+            <Box as={icons[network].icon} />
+          </Circle>
         </Box>
 
         <Box width="35%">
           <StatusText>Balance:</StatusText>
           <Heading as="h5" fontSize="sm">
-            {formatBalanceToDecimal(balance, decimal, network)} <span>{symbol}</span>
+            {formatBalanceToDecimal(balance, decimal, network)} <Badge fontSize="sm">{symbol}</Badge>
           </Heading>
         </Box>
 
         <Box width="30%">
-          <Text fontSize="xs" color="green.600">
-            Token Address:
-          </Text>
+          <StatusText>{name}</StatusText>
           <Badge as="h6" size="xs">
             <Link
               href={`${chainToExplorerMap[network]}/${tokenAddress}`}
@@ -249,7 +249,7 @@ export const CoinList: React.FC<unknown> = (props: CoinListProps) => {
             Contract Type:
           </Text>
           <Heading as="h6" size="xs">
-            {contractType}
+            {contractType || name}
           </Heading>
         </Box>
 
