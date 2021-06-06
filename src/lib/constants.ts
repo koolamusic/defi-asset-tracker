@@ -71,3 +71,5 @@ export interface TokenStatProps {
     value: number
   }
 }
+
+export type TNetwork = 'ETH' | 'BSC' | 'MATIC'

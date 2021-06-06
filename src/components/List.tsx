@@ -16,6 +16,8 @@ import {
 import { ArrowForwardIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router'
 import { Url } from 'url'
+import { formatAddress, formatBalanceToDecimal, formatBalance } from '@utils/helpers'
+import { TNetwork } from '@lib/constants'
 
 interface ITransactionList {
   customerName: string
@@ -192,9 +194,25 @@ export const ProfileList: React.FC<Partial<ITransactionSearch>> = (props) => {
   )
 }
 
-export const CoinList: React.FC<unknown> = (props) => {
-  const { symbol, name, tokenAddress, contractType, balance } = props
+interface CoinListProps {
+  symbol: string
+  name: string
+  tokenAddress: string
+  network: TNetwork
+  decimal: number
+  contractType: string
+  balance: string
+}
+
+export const CoinList: React.FC<unknown> = (props: CoinListProps) => {
+  const { symbol, name, tokenAddress, network, decimal, contractType, balance } = props
   const router = useRouter()
+
+  const chainToExplorerMap: Record<TNetwork, string> = {
+    ETH: 'https://etherscan.com',
+    BSC: 'https://bscscan.com',
+    MATIC: 'https://etherscan.com',
+  }
 
   return (
     <React.Fragment>
@@ -207,7 +225,7 @@ export const CoinList: React.FC<unknown> = (props) => {
         <Box width="35%">
           <StatusText>Balance:</StatusText>
           <Heading as="h5" fontSize="sm">
-            {balance} <span>{symbol}</span>
+            {formatBalanceToDecimal(balance, decimal, network)} <span>{symbol}</span>
           </Heading>
         </Box>
 
@@ -217,11 +235,11 @@ export const CoinList: React.FC<unknown> = (props) => {
           </Text>
           <Badge as="h6" size="xs">
             <Link
-              href={`https://etherscan.com/${tokenAddress}`}
+              href={`${chainToExplorerMap[network]}/${tokenAddress}`}
               to={`https://etherscan.com/${tokenAddress}`}
               isExternal
             >
-              {tokenAddress}
+              {formatAddress(tokenAddress)}
             </Link>
           </Badge>
         </Box>

@@ -5,6 +5,7 @@ import {
   names,
 } from 'unique-names-generator'
 import Moralis from 'moralis'
+import { TNetwork } from '@lib/constants'
 
 const randomNameConfig: Config = {
   dictionaries: [starWars, names],
@@ -47,8 +48,20 @@ export function formatAddress(address = '') {
   return address.slice(0, 6).concat('...', address.slice(-6))
 }
 
-export function formatBalance(balance = '', decimals = 18): number {
+export function formatBalance(balance = '', decimals = 18, network: TNetwork = 'ETH'): number {
+  //https://docs.binance.org/account.html
+  // let bscDesc = Number(10).toExponential(decimals)
+  // console.log(bscDesc)
+
+  if (network === 'BSC') {
+    return Number(balance) / 10 ** 8
+
+  }
   return Number(balance) / 10 ** decimals
+}
+
+export const formatBalanceToDecimal = (balance = '', decimals = 18, network: TNetwork = 'ETH') => {
+  return Math.round((formatBalance(balance, decimals, network) + Number.EPSILON) * 1000) / 1000
 }
 
 export function toWei(balance = '', decimals = 18) {

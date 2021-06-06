@@ -62,7 +62,11 @@ export default function Page(props: TPageProps): JSX.Element {
         },
       ]
 
-      const coinBase = [...ethBalances, ...maticBalances, ...bnbBalances]
+      const coinBase = [
+        ...ethBalances.map((item) => ({ ...item, network: 'ETH' })),
+        ...maticBalances.map((item) => ({ ...item, network: 'MATIC' })),
+        ...bnbBalances.map((item) => ({ ...item, network: 'BSC' })),
+      ]
       return {
         user,
         coinBase,
