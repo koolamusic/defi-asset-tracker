@@ -43,10 +43,7 @@ import nProgress from 'nprogress'
 class HttpAdapter extends Object {
   static defaults: any
 
-  static updateDefaults(config: {
-    baseURL: string | undefined
-    headers: { 'X-Request-With': string }
-  }) {
+  static updateDefaults(config: { baseURL: string | undefined; headers: { 'X-Request-With': string } }) {
     const baseURL = process.env.REACT_APP_PROXY_URL
     HttpAdapter.defaults = { ...this.defaults, ...config, baseURL }
   }
@@ -63,12 +60,7 @@ class HttpAdapter extends Object {
         return [`${baseURL}${route}`, stub].join('/').replace(/\/+$/, '')
       }
 
-      static executeRequest(
-        data = {},
-        pattern = '',
-        method = 'GET',
-        _ctx = {}
-      ) {
+      static executeRequest(data = {}, pattern = '', method = 'GET', _ctx = {}) {
         let url = this.buildURL(pattern, data)
         console.log(url)
         let config: any = { method, url }

@@ -7,10 +7,8 @@ import { MORALIS_APPLICATION_ID, MORALIS_SERVER_URL } from './constants'
 
 export function useMoralis() {
   /* Variables must be initialized */
-  if (!MORALIS_SERVER_URL)
-    throw new Error('Missing env.NEXT_PUBLIC_MORALIS_SERVER_URL')
-  if (!MORALIS_APPLICATION_ID)
-    throw new Error('Missing env.NEXT_PUBLIC_MORALIS_APPLICATION_ID')
+  if (!MORALIS_SERVER_URL) throw new Error('Missing env.NEXT_PUBLIC_MORALIS_SERVER_URL')
+  if (!MORALIS_APPLICATION_ID) throw new Error('Missing env.NEXT_PUBLIC_MORALIS_APPLICATION_ID')
 
   // Moralis Initialization
   let Moralis

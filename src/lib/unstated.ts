@@ -3,8 +3,7 @@ import { createContainer } from 'unstated-next'
 
 function useDefaultState(initialState = {}) {
   let [data, setData] = useState(initialState)
-  let update = (nextState: unknown) =>
-    setData(Object.assign({ data, nextState }))
+  let update = (nextState: unknown) => setData(Object.assign({ data, nextState }))
   return { data, update }
 }
 

@@ -1,8 +1,7 @@
 import { FaEthereum } from 'react-icons/fa'
 import { IcBinance, IcPolygonMatic } from '@components/_icons'
 
-export const MORALIS_APPLICATION_ID =
-  process.env.NEXT_PUBLIC_MORALIS_APPLICATION_ID
+export const MORALIS_APPLICATION_ID = process.env.NEXT_PUBLIC_MORALIS_APPLICATION_ID
 export const MORALIS_SERVER_URL = process.env.NEXT_PUBLIC_MORALIS_SERVER_URL
 
 /* Stubs for config variables */
@@ -38,7 +37,6 @@ export interface TransactionSearchProps {
   iconName: string | any
   iconSize: any
 }
-
 
 export interface UserAccountDict {
   ACL: {
