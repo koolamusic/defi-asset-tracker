@@ -78,6 +78,6 @@ If you want to use a pre-compiled file, you can fetch it from [unpkg](https://un
 - [ ] 100% Dark mode compatibility
 - [ ] Ability to filter collections by `chain` `BSC | ETH | POLYGON`
 - [ ] Transactions search and filter feature
-- [ ] Refresh on Wallet Address change in **MetaMask**
+- [ ] Refresh on Wallet Address / Account change in **MetaMask** [See Example](https://github.com/MoralisWeb3/demo-apps/blob/07e3a92d3e5aa24164883c1228f6ef82eecb84ac/user-profiles/index.js#L52)
 
 _Note to self_: This is possibly the **hackiest**, **shittiest** code I've written in a while.
