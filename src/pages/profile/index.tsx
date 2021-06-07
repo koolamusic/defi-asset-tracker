@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { destroyCookie } from 'nookies'
 import { CompoundLayout, SubmitButton } from '@components/Layout'
 import { ProfileList } from '@components/List'
 import { Avatar, Text, Box, VStack } from '@chakra-ui/react'
 import { useAuth } from '@lib/auth'
-import { config } from '@lib/constants'
+import * as NextUser from '@utils/user'
+import { config, TPageProps } from '@lib/constants'
+import { NextPageContext } from 'next'
 
-export default function Page(): JSX.Element {
+export default function Page(props: TPageProps): JSX.Element {
+  const [profile, setProfile] = useState([])
   const { logout } = useAuth()
+
+  useEffect(() => {
+    const user = props.user
+
+    const profile = {
+      username: user.username.toUpperCase(),
+      'Joined Date': user.createdAt,
+      'Main Address': user.ethAddress,
+    }
+    setProfile(profile)
+    console.log(user)
+  }, [props.user])
 
   const handleLogout = async () => {
     try {
@@ -24,31 +39,36 @@ export default function Page(): JSX.Element {
     <CompoundLayout>
       <VStack w="100%">
         <VStack p="2" width="100%">
-          <Avatar size="md" name="MetaId" src="/" />
-          <Text pt={3}>Andrew Miracle</Text>
+          <Avatar size="md" name={props.user.name} src="#" />
+          <Text pt={3}>{props.user.name}</Text>
         </VStack>
         <Box py={4} />
 
-        <Box w="100%">
-          <ProfileList
-            customerName="Wallet Address"
-            paymentStatus="Binance Chain"
-            itemName="Rudimentaty"
-            // iconName="arrow-forward"
-          />
-          <ProfileList
-            customerName="Joined"
-            paymentStatus="Binance Chain"
-            itemName="Rudimentaty"
-            // amountPaid="3113"
-            // customerStatus="Paid"
-            // amountDue="3202"
-            // overdueAmount="3113"
-            // amount="3202"
-          />
-          <SubmitButton onClick={() => handleLogout()} type="button" mt={8} withIcon buttonName="Logout" />
+        {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
+        <Box w="100%" my={6}>
+          {Object.keys(profile).map((entry, index) => {
+            // const { symbol, name, tokenAddress, contractType, balance } = entry
+
+            return <ProfileList key={[entry, index].join('-')} propertyNode={entry} value={profile[entry]} />
+          })}
         </Box>
+        {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
+
+        <SubmitButton onClick={() => handleLogout()} type="button" mt={8} withIcon buttonName="Logout" />
       </VStack>
     </CompoundLayout>
   )
+}
+
+export async function getServerSideProps(ctx: NextPageContext) {
+  const userInfo = await NextUser.handleAuthenticatedRequest(ctx)
+
+  /* Manage Nextjs screams!!! */
+  if (!userInfo)
+    return {
+      props: {
+        user: null,
+      },
+    }
+  return userInfo
 }

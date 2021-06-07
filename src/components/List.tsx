@@ -13,11 +13,12 @@ import {
   Link,
   IconButton,
   Circle,
+  useMediaQuery,
 } from '@chakra-ui/react'
-import { ArrowForwardIcon, ChevronRightIcon } from '@chakra-ui/icons'
+import { ArrowForwardIcon, ChevronRightIcon, InfoOutlineIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router'
 import { Url } from 'url'
-import { formatAddress, formatBalanceToDecimal, formatBalance } from '@utils/helpers'
+import { formatAddress, formatBalanceToDecimal, outerColorGen, layerColorGen } from '@utils/helpers'
 import { TNetwork, icons } from '@lib/constants'
 
 interface ITransactionList {
@@ -47,8 +48,8 @@ const Flex = styled(ChFlex)`
 const StatusText = styled(Text)`
   margin: 0;
   padding: 0;
-  font-size: 0.65rem;
-  line-height: 6px;
+  font-size: 0.75rem;
+  /* line-height: 6px; */
   text-transform: uppercase;
 `
 
@@ -111,82 +112,25 @@ export const TransactionList: React.FC<Partial<ITransactionList>> = (props) => {
  * Component for Transactions List
  */
 
-interface ITransactionSearch extends ITransactionList {
-  itemName?: string
-  amountPaid: string
-  amountDue: string
-}
-
-export const TransactionSearch: React.FC<Partial<ITransactionSearch>> = (props) => {
-  const { customerName, itemName, amountPaid, paymentStatus, amountDue, overdueStatus } = props
+export const ProfileList: React.FC = (props) => {
+  const { propertyNode, value } = props
 
   return (
     <>
-      <Flex {...props}>
-        <Box width="55%">
-          <StatusText>{customerName}</StatusText>
-          <Heading as="h5" fontSize="sm">
-            {itemName}
-          </Heading>
+      <Flex w="100%">
+        <Box width="30%">
+          <StatusText>{propertyNode}</StatusText>
         </Box>
 
-        <Box width="20%">
-          <Heading as="h6" size="xs">
-            {amountPaid}
-          </Heading>
-          <Text fontSize="xs" color="green.600">
-            {paymentStatus}
-          </Text>
-        </Box>
-
-        <Box width="20%">
-          <Heading as="h6" size="xs">
-            {amountDue}
-          </Heading>
-          <Text fontWeight="bold" fontSize="xs" color="red.700">
-            {overdueStatus}
-          </Text>
+        <Box width="65%">
+          <Badge fontWeight="500" fontSize="" bg={layerColorGen(value)} color={outerColorGen(value)}>
+            {value}
+          </Badge>
         </Box>
 
         <Box width="5%">
           <Stack isInline>
-            <ChevronRightIcon />
-          </Stack>
-        </Box>
-      </Flex>
-      <LineDivider />
-    </>
-  )
-}
-
-export const ProfileList: React.FC<Partial<ITransactionSearch>> = (props) => {
-  const { customerName, itemName, paymentStatus } = props
-
-  return (
-    <>
-      <Flex {...props}>
-        <Box width="55%">
-          <StatusText>{customerName}</StatusText>
-          <Heading as="h5" fontSize="sm">
-            {itemName}
-          </Heading>
-        </Box>
-
-        <Box width="40%">
-          {/* <Heading as="h6" size="xs">{amountPaid}</Heading> */}
-          <Text fontSize="xs" color="blue.700">
-            {paymentStatus}
-          </Text>
-        </Box>
-
-        {/* <Box width="20%">
-                    <Heading as="h6" size="xs">{amountDue}</Heading>
-                    <Text fontWeight="bold" fontSize="xs" color="red.700">{overdueStatus}</Text>
-                </Box> */}
-
-        <Box width="5%">
-          <Stack isInline>
-            <ChevronRightIcon />
+            <InfoOutlineIcon />
           </Stack>
         </Box>
       </Flex>
@@ -205,33 +149,46 @@ interface CoinListProps {
   balance: string
 }
 
-export const CoinList: React.FC<unknown> = (props: CoinListProps) => {
+export const CoinList: React.FC<CoinListProps> = (props) => {
   const { symbol, name, tokenAddress, network, decimal, contractType, balance } = props
+  const [isMobile] = useMediaQuery('(max-width: 480px)')
+
   const router = useRouter()
 
   const chainToExplorerMap: Record<TNetwork, string> = {
-    ETH: 'https://etherscan.com',
-    BSC: 'https://bscscan.com',
-    MATIC: 'https://etherscan.com',
+    ETH: 'https://etherscan.com/address',
+    BSC: 'https://bscscan.com/address',
+    MATIC: 'https://etherscan.com/address',
   }
 
   return (
     <React.Fragment>
-      <Flex>
-        <Box p="2" width="5%">
+      <Flex
+        bg={['white', 'inherit']}
+        border={['1px solid #ddd', 'none']}
+        p={[4, 'inherit']}
+        position={['relative']}
+        direction={['column', 'row']}
+      >
+        <Box p="2" width={['100%', '5%']}>
           <Circle bg={icons[network].color} color="white" rounded="full" size="6">
             <Box as={icons[network].icon} />
           </Circle>
         </Box>
 
-        <Box width="35%">
-          <StatusText>Balance:</StatusText>
+        <Box width={['100%', '35%']} py={[2, 'inherit']}>
+          <Text fontWeight="bold" fontSize="xs" color="blue.800">
+            Balance:
+          </Text>
           <Heading as="h5" fontSize="sm">
-            {formatBalanceToDecimal(balance, decimal, network)} <Badge fontSize="sm">{symbol}</Badge>
+            {formatBalanceToDecimal(balance, decimal, network)}{' '}
+            <Badge bg={layerColorGen(symbol)} color={outerColorGen(symbol)}>
+              {symbol}
+            </Badge>
           </Heading>
         </Box>
 
-        <Box width="30%">
+        <Box width={['100%', '30%']} py={[2, 'inherit']}>
           <StatusText>{name}</StatusText>
           <Badge as="h6" size="xs">
             <Link
@@ -239,12 +196,12 @@ export const CoinList: React.FC<unknown> = (props: CoinListProps) => {
               to={`https://etherscan.com/${tokenAddress}`}
               isExternal
             >
-              {formatAddress(tokenAddress)}
+              {isMobile ? tokenAddress : formatAddress(tokenAddress)}
             </Link>
           </Badge>
         </Box>
 
-        <Box width="10%">
+        <Box width={['100%', '10%']}>
           <Text fontWeight="bold" fontSize="xs" color="red.700">
             Contract Type:
           </Text>
@@ -253,13 +210,20 @@ export const CoinList: React.FC<unknown> = (props: CoinListProps) => {
           </Heading>
         </Box>
 
-        <Box width="5%" onClick={() => router.push(`/token/${tokenAddress}`)}>
-          <Stack isInline>
+        <Box
+          position={['absolute', 'relative']}
+          top="40%"
+          right="3%"
+          width={['100%', '5%']}
+          onClick={() => router.push(`/token/${tokenAddress}`)}
+        >
+          <Stack justify={['flex-end']} isInline>
             <IconButton variant="ghost" size="md" aria-label="view token detail" icon={<ChevronRightIcon />} />
           </Stack>
         </Box>
       </Flex>
       <LineDivider />
+      <Box mb={[3, 0]} />
     </React.Fragment>
   )
 }

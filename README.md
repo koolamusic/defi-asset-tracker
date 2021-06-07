@@ -2,6 +2,8 @@
 
 A Blockchain DApp to track your tokens, NFTs and assets across the `BSC` `ETH` and `POLYGON` Network. Built with <https://moralis.io>
 
+> CURRENT STATE: **IMPERFECTION**
+
 ## Deploy your own
 
 Head over to <https://moralis.io> sign up for beta access and add your `server_url` to the `.env`
@@ -76,3 +78,5 @@ If you want to use a pre-compiled file, you can fetch it from [unpkg](https://un
 - [ ] Ability to filter collections by `chain` `BSC | ETH | POLYGON`
 - [ ] Transactions search and filter feature
 - [ ] Refresh on Wallet Address change in **MetaMask**
+
+_Note to self_: This is possibly the **hackiest**, **shittiest** code I've written in a while.
