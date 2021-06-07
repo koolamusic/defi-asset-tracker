@@ -16,8 +16,8 @@ import {
 import { ArrowForwardIcon, ChevronRightIcon, InfoOutlineIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router'
 import { Url } from 'url'
-import { formatAddress, formatBalanceToDecimal, outerColorGen, layerColorGen, toWei, toGwei } from '@utils/helpers'
-import { TNetwork, TransactionSearchProps, chainToExplorerMap, icons } from '@lib/constants'
+import { formatAddress, formatBalanceToDecimal, outerColorGen, layerColorGen } from '@utils/helpers'
+import { TransactionSearchProps, chainToExplorerMap, icons, CoinListProps, TransactionListProps } from '@lib/constants'
 
 const Flex = styled(ChFlex)`
   min-height: 60px;
@@ -138,16 +138,6 @@ export const ProfileList: React.FC<ProfileListProps> = (props) => {
   )
 }
 
-interface CoinListProps {
-  symbol: string
-  name: string
-  tokenAddress: string
-  network: TNetwork
-  decimal: number
-  contractType: string
-  balance: string
-}
-
 export const CoinList: React.FC<CoinListProps> = (props) => {
   const { symbol, name, tokenAddress, network, decimal, contractType, balance } = props
   const [isMobile] = useMediaQuery('(max-width: 480px)')
@@ -186,7 +176,7 @@ export const CoinList: React.FC<CoinListProps> = (props) => {
           <Badge as="h6" size="xs">
             <Link
               href={`${chainToExplorerMap[network]}/${tokenAddress}`}
-              to={`https://etherscan.com/${tokenAddress}`}
+              to={`${chainToExplorerMap[network]}/${tokenAddress}`}
               isExternal
             >
               {isMobile ? tokenAddress : formatAddress(tokenAddress)}
@@ -221,19 +211,8 @@ export const CoinList: React.FC<CoinListProps> = (props) => {
   )
 }
 
-interface TransactionListProps {
-  block_timestamp: Date
-  block_hash: string
-  gas_price: number
-  hash: string
-  from_address: string
-  to_address: string
-  tokenAddress: string
-  network: TNetwork
-}
-
 export const TransactionList: React.FC<TransactionListProps> = (props) => {
-  const { block_timestamp, gas_price, block_hash, tokenAddress, network, hash, from_address, to_address } = props
+  const { block_timestamp, gas_price, block_hash, tokenAddress, network, from_address, to_address } = props
   const [isMobile] = useMediaQuery('(max-width: 480px)')
 
   const router = useRouter()
@@ -324,13 +303,18 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
 
         <Box
           position={['absolute', 'relative']}
-          top="40%"
+          bottom="4%"
           right="3%"
           width={['100%', '5%']}
           onClick={() => router.push(`/token/${tokenAddress}`)}
         >
           <Stack justify={['flex-end']} isInline>
-            <IconButton variant="ghost" size="md" aria-label="view token detail" icon={<ChevronRightIcon />} />
+            <IconButton
+              variant={isMobile ? 'solid' : 'ghost'}
+              size="md"
+              aria-label="view token detail"
+              icon={<ChevronRightIcon />}
+            />
           </Stack>
         </Box>
       </Flex>

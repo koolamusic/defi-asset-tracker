@@ -83,6 +83,36 @@ export interface CoinStatProps {
     }
   }
 }
+export interface CoinListProps {
+  symbol: string
+  name: string
+  tokenAddress: string
+  network: TNetwork
+  decimal: number
+  contractType: string
+  balance: string
+}
+
+export interface TransactionListProps {
+  block_timestamp: Date
+  block_hash: string
+  gas_price: number
+  hash: string
+  from_address: string
+  to_address: string
+  tokenAddress: string
+  network: TNetwork
+}
+
+export interface TokenStateContainer {
+  user: UserAccountDict;
+  coinBase: CoinListProps[];
+  ethBalance: CoinListProps;
+  bnbBalance: CoinListProps;
+  userEthNFTs: CoinListProps;
+  numTx: number;
+  tokenStat: TokenStatProps['data'][];
+}
 
 export interface TokenStatProps {
   icon: React.ElementType

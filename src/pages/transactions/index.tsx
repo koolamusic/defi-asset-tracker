@@ -28,18 +28,12 @@ export default function Page(props: TPageProps): JSX.Element {
     /* Init loader */
     setLoading(true)
 
-    async function useMora() {
+    async function valuesFromMoralis() {
       /* Use Promise.all */
       const ethOptions = { chain: 'eth' }
       const bnbOptions = { chain: 'bsc' }
       const maticOptions = { chain: 'matic' }
       const user = props.user as UserAccountDict
-      const ethBalances: unknown[] = await Moralis.Web3.getAllERC20()
-      const bnbBalances: unknown[] = await Moralis.Web3.getAllERC20(bnbOptions)
-      const maticBalances: unknown[] = await Moralis.Web3.getAllERC20(maticOptions)
-      const ethBalance = await Moralis.Web3.getERC20() // defaults to ETH
-      const bnbBalance = await Moralis.Web3.getERC20({ chain: 'bsc' })
-      const userEthNFTs = await Moralis.Web3.getNFTs()
       const userTransEth = await Moralis.Web3.getTransactions({
         ...ethOptions,
         address: user.ethAddress,
@@ -52,7 +46,6 @@ export default function Page(props: TPageProps): JSX.Element {
         ...maticOptions,
         address: user.ethAddress,
       })
-      const numTx = await Moralis.Web3.getTransactionsCount()
       const tokenStat: TokenStatProps['data'][] = [
         {
           symbol: 'MATIC',
@@ -85,18 +78,11 @@ export default function Page(props: TPageProps): JSX.Element {
       return {
         user,
         transactionBase,
-        ethBalance,
-        bnbBalance,
-        userEthNFTs,
-        numTx,
         tokenStat,
-        userTransEth,
-        userTransBsc,
-        userTransMatic,
       }
     }
 
-    useMora().then((val) => {
+    valuesFromMoralis().then((val) => {
       setAssets(val)
       setLoading(false)
     })
