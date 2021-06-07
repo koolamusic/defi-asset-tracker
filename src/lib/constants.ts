@@ -35,7 +35,7 @@ export interface UserAccountDict {
       signature: string
     }
   }
-  createdAt: Date
+  createdAt: string
   ethAddress: string
   name: string
   objectId: string

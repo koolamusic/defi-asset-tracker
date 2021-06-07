@@ -8,8 +8,6 @@ import {
   Text,
   Flex as ChFlex,
   Badge,
-  Tag,
-  TagLabel,
   Link,
   IconButton,
   Circle,
@@ -112,20 +110,34 @@ export const TransactionList: React.FC<Partial<ITransactionList>> = (props) => {
  * Component for Transactions List
  */
 
-export const ProfileList: React.FC = (props) => {
+interface ProfileListProps {
+  propertyNode: string
+  value: string
+}
+
+export const ProfileList: React.FC<ProfileListProps> = (props) => {
   const { propertyNode, value } = props
 
   return (
-    <>
+    <React.Fragment>
       <Flex w="100%">
         <Box width="30%">
           <StatusText>{propertyNode}</StatusText>
         </Box>
 
         <Box width="65%">
-          <Badge fontWeight="500" fontSize="" bg={layerColorGen(value)} color={outerColorGen(value)}>
+          <Heading
+            w="max-content"
+            p={1}
+            px={2}
+            rounded="md"
+            fontWeight="500"
+            fontSize="sm"
+            bg={layerColorGen(value)}
+            color={outerColorGen(value)}
+          >
             {value}
-          </Badge>
+          </Heading>
         </Box>
 
         <Box width="5%">
@@ -135,7 +147,7 @@ export const ProfileList: React.FC = (props) => {
         </Box>
       </Flex>
       <LineDivider />
-    </>
+    </React.Fragment>
   )
 }
 

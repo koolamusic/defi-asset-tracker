@@ -8,17 +8,31 @@ import * as NextUser from '@utils/user'
 import { config, TPageProps } from '@lib/constants'
 import { NextPageContext } from 'next'
 
+interface UserProfileInfoProps {
+  'account name': string
+  username: string
+  'join date': string
+  'main address': string
+  [x: string]: string
+}
+
 export default function Page(props: TPageProps): JSX.Element {
-  const [profile, setProfile] = useState([])
+  const [profile, setProfile] = useState<UserProfileInfoProps>({
+    'account name': 'user.name',
+    username: 'user.username',
+    'join date': 'user.createdAt',
+    'main address': 'user.ethAddress',
+  })
   const { logout } = useAuth()
 
   useEffect(() => {
     const user = props.user
 
-    const profile = {
-      username: user.username.toUpperCase(),
-      'Joined Date': user.createdAt,
-      'Main Address': user.ethAddress,
+    const profile: UserProfileInfoProps = {
+      'account name': user.name,
+      username: user.username,
+      'join date': user.createdAt,
+      'main address': user.ethAddress,
     }
     setProfile(profile)
     console.log(user)
@@ -53,6 +67,7 @@ export default function Page(props: TPageProps): JSX.Element {
           })}
         </Box>
         {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
+        <Box py={8} />
 
         <SubmitButton onClick={() => handleLogout()} type="button" mt={8} withIcon buttonName="Logout" />
       </VStack>
