@@ -2,7 +2,8 @@
 
 A Blockchain DApp to track your tokens, NFTs and assets across the `BSC` `ETH` and `POLYGON` Network. Built with <https://moralis.io>
 
-> CURRENT STATE: **IMPERFECTION**
+> Current State: **IMPERFECTION**
+> Pull Requests are **HIGHLY WELCOME**
 
 ## Deploy your own
 

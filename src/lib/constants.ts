@@ -110,7 +110,12 @@ export interface TokenStateContainer {
   ethBalance: CoinListProps;
   bnbBalance: CoinListProps;
   userEthNFTs: CoinListProps;
+  tokenStat: TokenStatProps['data'][];
   numTx: number;
+}
+export interface TransactionStateContainer {
+  transactionBase: TransactionListProps[],
+  user: UserAccountDict;
   tokenStat: TokenStatProps['data'][];
 }
 

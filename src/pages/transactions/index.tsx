@@ -7,20 +7,17 @@ import { TransactionList } from '@components/List'
 import * as NextUser from '@utils/user'
 import { Box, SimpleGrid } from '@chakra-ui/react'
 import { NextPageContext } from 'next'
-import { UserAccountDict, TNetwork, icons, TPageProps, TokenStatProps } from '@lib/constants'
-
-interface CoinListProps {
-  symbol: string
-  name: string
-  tokenAddress: string
-  network: TNetwork
-  decimal: number
-  contractType: string
-  balance: string
-}
+import {
+  UserAccountDict,
+  icons,
+  TPageProps,
+  TokenStatProps,
+  TransactionStateContainer,
+  TransactionListProps,
+} from '@lib/constants'
 
 export default function Page(props: TPageProps): JSX.Element {
-  const [assets, setAssets] = useState<Record<string, any>>({})
+  const [assets, setAssets] = useState<TransactionStateContainer>({} as TransactionStateContainer)
   const [loading, setLoading] = useState<boolean>(true)
   const { Moralis } = useMoralis()
 
@@ -68,9 +65,9 @@ export default function Page(props: TPageProps): JSX.Element {
       ]
 
       const transactionBase = [
-        ...userTransEth.map((item) => ({ ...item, network: 'ETH' })),
-        ...userTransMatic.map((item) => ({ ...item, network: 'MATIC' })),
-        ...userTransBsc.map((item) => ({ ...item, network: 'BSC' })),
+        ...userTransEth.map((item: TransactionListProps) => ({ ...item, network: 'ETH' })),
+        ...userTransMatic.map((item: TransactionListProps) => ({ ...item, network: 'MATIC' })),
+        ...userTransBsc.map((item: TransactionListProps) => ({ ...item, network: 'BSC' })),
       ]
 
       // const coinBase = [
@@ -115,10 +112,10 @@ export default function Page(props: TPageProps): JSX.Element {
         <Box py={4} />
         {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
         <Box mx="auto" my={6}>
-          {assets.transactionBase.map((asset, index) => {
+          {assets.transactionBase.map((asset, _index) => {
             // const { symbol, name, tokenAddress, contractType, balance } = asset
 
-            return <TransactionList key={[asset.symbol, index].join('_')} {...asset} />
+            return <TransactionList key={asset.hash} {...asset} />
           })}
         </Box>
         {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
