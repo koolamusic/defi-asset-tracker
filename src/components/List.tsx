@@ -16,21 +16,8 @@ import {
 import { ArrowForwardIcon, ChevronRightIcon, InfoOutlineIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router'
 import { Url } from 'url'
-import { formatAddress, formatBalanceToDecimal, outerColorGen, layerColorGen } from '@utils/helpers'
-import { TNetwork, icons } from '@lib/constants'
-
-interface ITransactionList {
-  customerName: string
-  customerStatus: string
-  itemName?: string
-  amount: any
-  paymentStatus: string
-  overdueAmount: string
-  overdueStatus: string
-  cardLink: string
-  iconName: string | any
-  iconSize: any
-}
+import { formatAddress, formatBalanceToDecimal, outerColorGen, layerColorGen, toWei, toGwei } from '@utils/helpers'
+import { TNetwork, TransactionSearchProps, chainToExplorerMap, icons } from '@lib/constants'
 
 const Flex = styled(ChFlex)`
   min-height: 60px;
@@ -58,7 +45,7 @@ const LineDivider = styled.div`
   background: #eee;
 `
 
-export const TransactionList: React.FC<Partial<ITransactionList>> = (props) => {
+export const TransactionSearch: React.FC<Partial<TransactionSearchProps>> = (props) => {
   const { customerName, customerStatus, amount, paymentStatus, overdueAmount, overdueStatus, cardLink } = props
   const router = useRouter()
 
@@ -167,12 +154,6 @@ export const CoinList: React.FC<CoinListProps> = (props) => {
 
   const router = useRouter()
 
-  const chainToExplorerMap: Record<TNetwork, string> = {
-    ETH: 'https://etherscan.com/address',
-    BSC: 'https://bscscan.com/address',
-    MATIC: 'https://etherscan.com/address',
-  }
-
   return (
     <React.Fragment>
       <Flex
@@ -220,6 +201,125 @@ export const CoinList: React.FC<CoinListProps> = (props) => {
           <Heading as="h6" size="xs">
             {contractType || name}
           </Heading>
+        </Box>
+
+        <Box
+          position={['absolute', 'relative']}
+          top="40%"
+          right="3%"
+          width={['100%', '5%']}
+          onClick={() => router.push(`/token/${tokenAddress}`)}
+        >
+          <Stack justify={['flex-end']} isInline>
+            <IconButton variant="ghost" size="md" aria-label="view token detail" icon={<ChevronRightIcon />} />
+          </Stack>
+        </Box>
+      </Flex>
+      <LineDivider />
+      <Box mb={[3, 0]} />
+    </React.Fragment>
+  )
+}
+
+interface TransactionListProps {
+  block_timestamp: Date
+  block_hash: string
+  gas_price: number
+  hash: string
+  from_address: string
+  to_address: string
+  tokenAddress: string
+  network: TNetwork
+}
+
+export const TransactionList: React.FC<TransactionListProps> = (props) => {
+  const { block_timestamp, gas_price, block_hash, tokenAddress, network, hash, from_address, to_address } = props
+  const [isMobile] = useMediaQuery('(max-width: 480px)')
+
+  const router = useRouter()
+
+  return (
+    <React.Fragment>
+      <Flex
+        bg={['white', 'inherit']}
+        border={['1px solid #ddd', 'none']}
+        p={[4, 'inherit']}
+        position={['relative']}
+        direction={['column', 'row']}
+      >
+        <Box p="2" width={['100%', '5%']}>
+          <Circle bg={icons[network].color} color="white" rounded="full" size="6">
+            <Box as={icons[network].icon} />
+          </Circle>
+        </Box>
+
+        {/* <Box width={['100%', '35%']} py={[2, 'inherit']}>
+          <Text fontWeight="bold" fontSize="xs" color="blue.800">
+            Amount:
+          </Text>
+          <Heading as="h5" fontSize="sm">
+            {formatBalanceToDecimal(balance, decimal, network)}{' '}
+            <Badge bg={layerColorGen(symbol)} color={outerColorGen(symbol)}>
+              {symbol}
+            </Badge>
+          </Heading>
+        </Box> */}
+
+        <Box width={['100%', '20%']} py={[2, 'inherit']}>
+          <StatusText>From Address</StatusText>
+          <Badge as="h6" size="xs">
+            <Link
+              href={`${chainToExplorerMap[network]}/${from_address}`}
+              to={`https://etherscan.com/${from_address}`}
+              isExternal
+            >
+              {isMobile ? from_address : formatAddress(from_address || '')}
+            </Link>
+          </Badge>
+        </Box>
+
+        <Box width={['100%', '20%']} py={[2, 'inherit']}>
+          <StatusText>To Address</StatusText>
+          <Badge as="h6" size="xs">
+            <Link
+              href={`${chainToExplorerMap[network]}/${to_address}`}
+              to={`https://etherscan.com/${to_address}`}
+              isExternal
+            >
+              {isMobile ? to_address : formatAddress(to_address || '')}
+            </Link>
+          </Badge>
+        </Box>
+
+        <Box width={['100%', '30%']} py={[2, 'inherit']}>
+          <StatusText>Transaction Hash</StatusText>
+          <Badge as="h6" size="xs">
+            <Link
+              href={`${chainToExplorerMap[network]}/${block_hash}`}
+              to={`https://etherscan.com/${block_hash}`}
+              isExternal
+            >
+              {formatAddress(block_hash)}
+            </Link>
+          </Badge>
+        </Box>
+
+        <Box width={['100%', '20%']}>
+          <Text fontWeight="bold" fontSize="xs" color="red.700">
+            Gas price
+          </Text>
+          <Text as="h6" size="xs">
+            {gas_price}
+          </Text>
+        </Box>
+
+        <Box width={['100%', '20%']}>
+          <Text fontWeight="bold" fontSize="xs" color="red.700">
+            Timestamp
+          </Text>
+          <Text as="small" size="xs">
+            {block_timestamp.toDateString()}
+          </Text>
         </Box>
 
         <Box

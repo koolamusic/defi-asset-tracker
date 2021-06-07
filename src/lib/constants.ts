@@ -13,12 +13,32 @@ export const config = {
   profileKey: '__app.user',
 }
 
+export const chainToExplorerMap: Record<TNetwork, string> = {
+  ETH: 'https://etherscan.com/address',
+  BSC: 'https://bscscan.com/address',
+  MATIC: 'https://etherscan.com/address',
+}
+
 export interface AccountBalanceDict {
   balance: string
   decimals: number
   name: string
   symbol: string
 }
+
+export interface TransactionSearchProps {
+  customerName: string
+  customerStatus: string
+  itemName?: string
+  amount: any
+  paymentStatus: string
+  overdueAmount: string
+  overdueStatus: string
+  cardLink: string
+  iconName: string | any
+  iconSize: any
+}
+
 
 export interface UserAccountDict {
   ACL: {
@@ -73,6 +93,7 @@ export interface TokenStatProps {
     symbol: string
     label: string
     value: number
+    message?: string
   }
 }
 

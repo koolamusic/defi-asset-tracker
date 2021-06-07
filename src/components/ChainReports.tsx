@@ -67,7 +67,7 @@ export const TokenStat = (props: TokenStatProps) => {
 
       <Flex justify="space-between" mb="3" align="center" fontWeight="medium" fontSize="sm">
         <HStack spacing="0" color={mode('gray.500', 'gray.400')}>
-          <Text>Assets on-chain</Text>
+          <Text>{data.message ?? 'Assets on-chain'}</Text>
         </HStack>
         <Heading as="h3" size="xs" color="gray.600">
           {symbol}

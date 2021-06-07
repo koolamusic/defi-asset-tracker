@@ -58,7 +58,7 @@ export default function Page(props: TPageProps): JSX.Element {
         </VStack>
         <Box py={4} />
 
-        {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
+        {/* /////////////// Render the User Profile list ///////////// */}
         <Box w="100%" my={6}>
           {Object.keys(profile).map((entry, index) => {
             // const { symbol, name, tokenAddress, contractType, balance } = entry
@@ -66,7 +66,7 @@ export default function Page(props: TPageProps): JSX.Element {
             return <ProfileList key={[entry, index].join('-')} propertyNode={entry} value={profile[entry]} />
           })}
         </Box>
-        {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
+        {/* /////////////// Render the User Profile list  ///////////// */}
         <Box py={8} />
 
         <SubmitButton onClick={() => handleLogout()} type="button" mt={8} withIcon buttonName="Logout" />

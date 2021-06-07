@@ -3,11 +3,21 @@ import { useMoralis } from '@lib/moralis'
 import { CompoundLayout, Loader } from '@components/Layout'
 import { FormPageHeader } from '@components/Body'
 import { TokenStat } from '@components/ChainReports'
-import { CoinList, TransactionSearch } from '@components/List'
+import { TransactionList } from '@components/List'
 import * as NextUser from '@utils/user'
 import { Box, SimpleGrid } from '@chakra-ui/react'
 import { NextPageContext } from 'next'
-import { UserAccountDict, icons, TPageProps, TokenStatProps } from '@lib/constants'
+import { UserAccountDict, TNetwork, icons, TPageProps, TokenStatProps } from '@lib/constants'
+
+interface CoinListProps {
+  symbol: string
+  name: string
+  tokenAddress: string
+  network: TNetwork
+  decimal: number
+  contractType: string
+  balance: string
+}
 
 export default function Page(props: TPageProps): JSX.Element {
   const [assets, setAssets] = useState<Record<string, any>>({})
@@ -47,28 +57,34 @@ export default function Page(props: TPageProps): JSX.Element {
         {
           symbol: 'MATIC',
           label: 'Polygon MATIC',
-          value: maticBalances.length,
+          value: userTransMatic.length,
+          message: 'Transactions on chain',
         },
         {
           symbol: 'ETH',
           label: 'Ethereum',
-          value: ethBalances.length,
+          value: userTransEth.length,
+          message: 'Transactions on chain',
         },
         {
           symbol: 'BSC',
           label: 'Binance',
-          value: bnbBalances.length,
+          value: userTransBsc.length,
+          message: 'Transactions on chain',
         },
       ]
 
-      const coinBase = [
-        ...ethBalances.map((item) => ({ ...item, network: 'ETH' })),
-        ...maticBalances.map((item) => ({ ...item, network: 'MATIC' })),
-        ...bnbBalances.map((item) => ({ ...item, network: 'BSC' })),
+      const transactionBase = [
+        ...userTransEth.map((item) => ({ ...item, network: 'ETH' })),
+        ...userTransMatic.map((item) => ({ ...item, network: 'MATIC' })),
+        ...userTransBsc.map((item) => ({ ...item, network: 'BSC' })),
       ]
+
+      // const coinBase = [
+      // ]
       return {
         user,
-        coinBase,
+        transactionBase,
         ethBalance,
         bnbBalance,
         userEthNFTs,
@@ -113,15 +129,15 @@ export default function Page(props: TPageProps): JSX.Element {
         <Box py={4} />
         {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
         <Box mx="auto" my={6}>
-          {assets.coinBase.map((asset, index) => {
+          {assets.transactionBase.map((asset, index) => {
             // const { symbol, name, tokenAddress, contractType, balance } = asset
 
-            return <CoinList key={[asset.symbol, index].join('_')} {...asset} />
+            return <TransactionList key={[asset.symbol, index].join('_')} {...asset} />
           })}
         </Box>
         {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
 
-        {/* <CoinList
+        {/* <TransactionList
         customerName="9x027373761011"
         customerStatus="Paid"
         amount={3202}
