@@ -175,8 +175,8 @@ export const CoinList: React.FC<CoinListProps> = (props) => {
           <StatusText>{name}</StatusText>
           <Badge as="h6" size="xs">
             <Link
-              href={`${chainToExplorerMap[network]}/${tokenAddress}`}
-              to={`${chainToExplorerMap[network]}/${tokenAddress}`}
+              href={`${chainToExplorerMap[network]}/address/${tokenAddress}`}
+              to={`${chainToExplorerMap[network]}/address/${tokenAddress}`}
               isExternal
             >
               {isMobile ? tokenAddress : formatAddress(tokenAddress)}
@@ -212,7 +212,7 @@ export const CoinList: React.FC<CoinListProps> = (props) => {
 }
 
 export const TransactionList: React.FC<TransactionListProps> = (props) => {
-  const { block_timestamp, gas_price, block_hash, tokenAddress, network, from_address, to_address } = props
+  const { block_timestamp, gas_price, hash, tokenAddress, network, from_address, to_address } = props
   const [isMobile] = useMediaQuery('(max-width: 480px)')
 
   const router = useRouter()
@@ -248,8 +248,8 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
           <StatusText>From Address</StatusText>
           <Badge as="h6" size="xs">
             <Link
-              href={`${chainToExplorerMap[network]}/${from_address}`}
-              to={`https://etherscan.com/${from_address}`}
+              href={`${chainToExplorerMap[network]}/address/${from_address}`}
+              to={`${chainToExplorerMap[network]}/address/${from_address}`}
               isExternal
             >
               {isMobile ? from_address : formatAddress(from_address || '')}
@@ -261,8 +261,8 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
           <StatusText>To Address</StatusText>
           <Badge as="h6" size="xs">
             <Link
-              href={`${chainToExplorerMap[network]}/${to_address}`}
-              to={`https://etherscan.com/${to_address}`}
+              href={`${chainToExplorerMap[network]}/address/${to_address}`}
+              to={`${chainToExplorerMap[network]}/address/${to_address}`}
               isExternal
             >
               {isMobile ? to_address : formatAddress(to_address || '')}
@@ -274,11 +274,11 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
           <StatusText>Transaction Hash</StatusText>
           <Badge as="h6" size="xs">
             <Link
-              href={`${chainToExplorerMap[network]}/${block_hash}`}
-              to={`https://etherscan.com/${block_hash}`}
+              href={`${chainToExplorerMap[network]}/tx/${hash}`}
+              to={`${chainToExplorerMap[network]}/tx/${hash}`}
               isExternal
             >
-              {formatAddress(block_hash)}
+              {formatAddress(hash)}
             </Link>
           </Badge>
         </Box>

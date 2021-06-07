@@ -13,9 +13,9 @@ export const config = {
 }
 
 export const chainToExplorerMap: Record<TNetwork, string> = {
-  ETH: 'https://etherscan.com/address',
-  BSC: 'https://bscscan.com/address',
-  MATIC: 'https://etherscan.com/address',
+  ETH: 'https://etherscan.com',
+  BSC: 'https://bscscan.com',
+  MATIC: 'https://etherscan.com',
 }
 
 export interface AccountBalanceDict {
@@ -95,7 +95,7 @@ export interface CoinListProps {
 
 export interface TransactionListProps {
   block_timestamp: Date
-  block_hash: string
+  block_hash?: string
   gas_price: number
   hash: string
   from_address: string
