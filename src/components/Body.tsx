@@ -165,7 +165,7 @@ export const Footer: React.FC = (): JSX.Element => {
           <Button onClick={(_e) => router.push('/nfts')} mr="-px">
             NFTs
           </Button>
-          <Button onClick={(_e) => router.push('/')} mr="-px">
+          <Button onClick={(_e) => router.push('/transactions')} mr="-px">
             Transactions
           </Button>
           <Button onClick={(_e) => router.push('/profile')} mr="-px">

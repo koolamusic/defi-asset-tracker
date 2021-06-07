@@ -42,7 +42,7 @@ const web3 = new Moralis.Web3()
 if (typeof window !== `undefined`) {
   (window as any).web3 = web3
 
-  console.log(Moralis)
+  // console.log(Moralis)
 }
 export function formatAddress(address = '') {
   return address.slice(0, 6).concat('...', address.slice(-6))

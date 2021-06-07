@@ -4,7 +4,7 @@ import { CompoundLayout, Loader } from '@components/Layout'
 import { FormPageHeader } from '@components/Body'
 import { TokenStat } from '@components/ChainReports'
 import { CoinList, TransactionSearch } from '@components/List'
-import * as Auth from '@utils/user'
+import * as NextUser from '@utils/user'
 import { Box, SimpleGrid } from '@chakra-ui/react'
 import { NextPageContext } from 'next'
 import { UserAccountDict, icons, TPageProps, TokenStatProps } from '@lib/constants'
@@ -93,34 +93,35 @@ export default function Page(props: TPageProps): JSX.Element {
   }
 
   return (
-    <CompoundLayout>
-      <FormPageHeader
-        formHeading="Your Tokens"
-        formSubHeading="Get an overview of all your tokens across various chains here"
-      />
-      {/* /////////////// Network Token Balance Stat ///////////// */}
-      <Box mx="auto" my={6}>
-        <SimpleGrid columns={{ sm: 2, md: 3, lg: 3 }} spacing="6">
-          {assets.tokenStat.map((stat, index) => {
-            const { icon, color: accentColor } = icons[stat.symbol]
-            return <TokenStat icon={icon} accentColor={accentColor} key={index} data={stat} />
+    <React.Fragment>
+      <CompoundLayout>
+        <FormPageHeader
+          formHeading="Your Tokens"
+          formSubHeading="Get an overview of all your tokens across various chains here"
+        />
+        {/* /////////////// Network Token Balance Stat ///////////// */}
+        <Box mx="auto" my={6}>
+          <SimpleGrid columns={{ sm: 2, md: 3, lg: 3 }} spacing="6">
+            {assets.tokenStat.map((stat, index) => {
+              const { icon, color: accentColor } = icons[stat.symbol]
+              return <TokenStat icon={icon} accentColor={accentColor} key={index} data={stat} />
+            })}
+          </SimpleGrid>
+        </Box>
+        {/* /////////////// Network Token Balance Stat ///////////// */}
+
+        <Box py={4} />
+        {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
+        <Box mx="auto" my={6}>
+          {assets.coinBase.map((asset, index) => {
+            // const { symbol, name, tokenAddress, contractType, balance } = asset
+
+            return <CoinList key={[asset.symbol, index].join('_')} {...asset} />
           })}
-        </SimpleGrid>
-      </Box>
-      {/* /////////////// Network Token Balance Stat ///////////// */}
+        </Box>
+        {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
 
-      <Box py={4} />
-      {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
-      <Box mx="auto" my={6}>
-        {assets.coinBase.map((asset, index) => {
-          // const { symbol, name, tokenAddress, contractType, balance } = asset
-
-          return <CoinList {...asset} />
-        })}
-      </Box>
-      {/* /////////////// Contracts and Tokens in Wallet ///////////// */}
-
-      {/* <CoinList
+        {/* <CoinList
         customerName="9x027373761011"
         customerStatus="Paid"
         amount={3202}
@@ -130,12 +131,14 @@ export default function Page(props: TPageProps): JSX.Element {
         iconName="arrow-forward"
         cardLink="/tokens"
       /> */}
-    </CompoundLayout>
+      </CompoundLayout>
+      <Box py={8} />
+    </React.Fragment>
   )
 }
 
 export async function getServerSideProps(ctx: NextPageContext) {
-  const userInfo = await Auth.handleAuthenticatedRequest(ctx)
+  const userInfo = await NextUser.handleAuthenticatedRequest(ctx)
 
   /* Manage Nextjs screams!!! */
   if (!userInfo)
