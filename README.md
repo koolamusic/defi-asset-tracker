@@ -66,12 +66,12 @@ If you want to use a pre-compiled file, you can fetch it from [unpkg](https://un
 - [x] Authenticate user with MetaMask
 - [x] Authentication Guard for routes
 - [x] Account summary Topbar
-- [ ] Token Summary Statistic
-- [ ] Tokens List page
+- [x] Token Summary Statistic
+- [x] Tokens List page
 - [ ] Tokens Detail page
-- [ ] Transaction Log page
-- [ ] Profile Page
-- [ ] Account Logout Utility
+- [x] Transaction Log page
+- [x] Profile Page
+- [x] Account Logout Utility
 - [ ] NFTs collection page
 - [ ] Refresh Assets and Token `onChain` Network change - when user changes their network in **MetaMask**
 - [ ] Realtime Transactions Subscriptions - Listen for new transactions performed with the user address on the blockchain in realtime
