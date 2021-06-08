@@ -9,7 +9,7 @@ const randomNameConfig: Config = {
 }
 
 export const generateRandomName = () => uniqueNamesGenerator(randomNameConfig)
-export const stringToHslColor = (str: "string", s: number, l: number) => {
+export const stringToHslColor = (str = "string", s: number, l: number) => {
   const table = str.slice(0, 12)
   let hash = 0
   for (let i = 0; i < table.length; i++) {
