@@ -1,7 +1,7 @@
 import React from 'react'
 import { CompoundLayout } from '@components/Layout'
 import { FormPageHeader } from '@components/Body'
-import { MultiStat } from '@components/Statistic'
+// import { MultiStat } from '@components/Statistic'
 import { Box, Center, VStack, Text } from '@chakra-ui/react'
 import { InfoOutlineIcon } from '@chakra-ui/icons'
 
@@ -12,7 +12,7 @@ export default function Page(): JSX.Element {
         formHeading="Track your NFTs"
         formSubHeading="Monitor ROI for your NFTs on the ETH Network"
       />
-      <MultiStat />
+      {/* <MultiStat /> */}
       <Box py={[4, 8]} />
       <Center>
         <VStack>
