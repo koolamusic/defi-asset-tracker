@@ -1,4 +1,5 @@
 import { uniqueNamesGenerator, Config, starWars, names } from 'unique-names-generator'
+import { orderBy } from 'lodash'
 import Moralis from 'moralis'
 import { TNetwork } from '@lib/constants'
 
@@ -9,7 +10,11 @@ const randomNameConfig: Config = {
 }
 
 export const generateRandomName = () => uniqueNamesGenerator(randomNameConfig)
-export const stringToHslColor = (str = "string", s: number, l: number) => {
+export const stringToHslColor = (str: string, s: number, l: number) => {
+  if (!str || str == null) {
+    str = "default"
+  }
+
   const table = str.slice(0, 12)
   let hash = 0
   for (let i = 0; i < table.length; i++) {
@@ -81,4 +86,9 @@ export function toGwei(wei: number) {
 
 export function formatNumberIntl(value: number) {
   return new Intl.NumberFormat('en-US', { style: 'decimal', currency: 'USD' }).format(value)
+}
+
+
+export function orderLastToFirst(arr: any[], key: string) {
+  return orderBy(arr, key, 'desc')
 }
