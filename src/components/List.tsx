@@ -1,4 +1,5 @@
 import React from 'react'
+import Blockies from 'react-blockies'
 import styled from '@emotion/styled'
 import {
   Box,
@@ -270,7 +271,7 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
           </Badge>
         </Box>
 
-        <Box width={['100%', '30%']} py={[2, 'inherit']}>
+        <Box width={['100%', '25%']} py={[2, 'inherit']}>
           <StatusText>Transaction Hash</StatusText>
           <Badge as="h6" size="xs">
             <Link
@@ -292,12 +293,12 @@ export const TransactionList: React.FC<TransactionListProps> = (props) => {
           </Text>
         </Box>
 
-        <Box width={['100%', '20%']}>
+        <Box width={['100%', '25%']}>
           <Text fontWeight="bold" fontSize="xs" color="red.700">
             Timestamp
           </Text>
           <Text as="small" size="xs">
-            {block_timestamp.toDateString()}
+            {new Date(block_timestamp).toUTCString()}
           </Text>
         </Box>
 

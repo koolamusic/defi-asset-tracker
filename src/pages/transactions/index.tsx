@@ -15,6 +15,7 @@ import {
   TransactionStateContainer,
   TransactionListProps,
 } from '@lib/constants'
+import { orderLastToFirst } from '@utils/helpers'
 
 export default function Page(props: TPageProps): JSX.Element {
   const [assets, setAssets] = useState<TransactionStateContainer>({} as TransactionStateContainer)
@@ -64,11 +65,14 @@ export default function Page(props: TPageProps): JSX.Element {
         },
       ]
 
-      const transactionBase = [
-        ...userTransEth.map((item: TransactionListProps) => ({ ...item, network: 'ETH' })),
-        ...userTransMatic.map((item: TransactionListProps) => ({ ...item, network: 'MATIC' })),
-        ...userTransBsc.map((item: TransactionListProps) => ({ ...item, network: 'BSC' })),
-      ]
+      const transactionBase = orderLastToFirst(
+        [
+          ...userTransEth.map((item: TransactionListProps) => ({ ...item, network: 'ETH' })),
+          ...userTransMatic.map((item: TransactionListProps) => ({ ...item, network: 'MATIC' })),
+          ...userTransBsc.map((item: TransactionListProps) => ({ ...item, network: 'BSC' })),
+        ],
+        'block_timestamp'
+      )
 
       // const coinBase = [
       // ]
