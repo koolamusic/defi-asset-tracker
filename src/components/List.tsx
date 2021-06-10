@@ -1,5 +1,5 @@
 import React from 'react'
-import Blockies from 'react-blockies'
+import { Jazzicon } from '@ukstv/jazzicon-react'
 import styled from '@emotion/styled'
 import {
   Box,
@@ -154,9 +154,10 @@ export const CoinList: React.FC<CoinListProps> = (props) => {
         position={['relative']}
         direction={['column', 'row']}
       >
-        <Box p="2" width={['100%', '5%']}>
-          <Circle bg={icons[network].color} color="white" rounded="full" size="6">
-            <Box as={icons[network].icon} />
+        <Box p="2" borderRadius="50%" width={['100%', '5%']}>
+          <Circle color="white" rounded="full" size="6">
+            {/* <Box as={icons[network].icon} /> */}
+            <Jazzicon address={tokenAddress ?? '0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07'} />
           </Circle>
         </Box>
 
