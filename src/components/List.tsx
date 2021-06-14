@@ -1,5 +1,6 @@
 import React from 'react'
-import { Jazzicon } from '@ukstv/jazzicon-react'
+// import { Jazzicon } from '@ukstv/jazzicon-react'
+import Jazzicon, { jsNumberForAddress } from 'react-solana-jazzicon'
 import styled from '@emotion/styled'
 import {
   Box,
@@ -157,7 +158,11 @@ export const CoinList: React.FC<CoinListProps> = (props) => {
         <Box p="2" borderRadius="50%" width={['100%', '5%']}>
           <Circle color="white" rounded="full" size="6">
             {/* <Box as={icons[network].icon} /> */}
-            <Jazzicon address={tokenAddress ?? '0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07'} />
+            {/* <Jazzicon address={tokenAddress ?? '0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07'} /> */}
+            <Jazzicon
+              diameter={24}
+              seed={jsNumberForAddress(tokenAddress ?? '0x1111111111111111111111111111111111111111')}
+            />
           </Circle>
         </Box>
 
