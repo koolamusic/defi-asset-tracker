@@ -94,7 +94,7 @@ export const SubmitButton: React.FC<ISubmitButton> = (props) => {
   const { withIcon, isLoading, type, buttonName, ...rest } = props
   return (
     <Button
-      borderRadius="4px"
+      borderRadius="md"
       fontWeight="700"
       alignContent="center"
       minH="3rem"

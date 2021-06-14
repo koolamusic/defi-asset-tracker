@@ -6,6 +6,7 @@ import progress from 'nprogress'
 import theme from '../theme'
 import Fonts from '../components/Global'
 import { Unstated } from '@lib/unstated'
+import DocumentHead from '@utils/next/Head'
 
 /* Configure N-progress Routing Feedback */
 progress.configure({ showSpinner: false })
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Unstated.Provider>
       <ChakraProvider resetCSS theme={theme}>
+        <DocumentHead />
         <Fonts />
         <Component {...pageProps} />
       </ChakraProvider>

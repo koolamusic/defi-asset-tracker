@@ -4,19 +4,19 @@ import { Description } from './Description'
 
 export const NotificationCard = () => {
   return (
-    <Box maxW="3xl" mx="auto" py="6" px="8" rounded="lg" bg={mode('white', 'gray.700')} shadow="base" overflow="hidden">
+    <Box w="100%" py="6" bg={mode('inherit', 'gray.700')} overflow="hidden">
       <Box mb="8">
         <Text as="h3" fontWeight="bold" fontSize="lg">
-          Notifications
+          Transaction & Alerts
         </Text>
         <Text color="gray.500" fontSize="sm">
-          Receive notifications about Chakra UI updates.
+          Configure how you want to be notified for activities
         </Text>
       </Box>
       <Stack spacing="4" divider={<StackDivider />}>
-        <Description title="Email">Receive email updates on comments you followed</Description>
-        <Description title="Text messages">Recieve updates by SMS</Description>
-        <Description title="Browser notifications">We&apos;ll send via our desktop or mobile app</Description>
+        <Description title="Tokens">Notify me if new assets are added to my account</Description>
+        <Description title="Transactions">Notify me of new transactions across my portfolio</Description>
+        <Description title="NFTs">Notify me of new buys and sell orders on my NFTs</Description>
       </Stack>
     </Box>
   )
