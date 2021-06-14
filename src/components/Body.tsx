@@ -138,8 +138,8 @@ export const Footer: React.FC = (): JSX.Element => {
       width="100%"
       padding={styleConstants.paddingWrapper}
       zIndex="9999"
-      // bg={['white', 'inherit']}
-      // border={[styleConstants.altBorder, "none"]}
+      bg={['inherit', 'white']}
+      border={['none', styleConstants.altBorder]}
       py={2}
     >
       <Box
@@ -149,7 +149,7 @@ export const Footer: React.FC = (): JSX.Element => {
         p={2}
         bg={['white', 'white']}
         width={['100%', 'max-content', 'max-content']}
-        border={[styleConstants.altBorder, styleConstants.defaultBorder]}
+        // border={[styleConstants.altBorder, styleConstants.defaultBorder]}
         borderRadius="lg"
       >
         <ButtonGroup
@@ -159,16 +159,16 @@ export const Footer: React.FC = (): JSX.Element => {
           display="flex"
           justifyContent="space-between"
         >
-          <Button onClick={(_e) => router.push('/tokens')} mr="-px">
+          <Button border={styleConstants.tableBorder} onClick={(_e) => router.push('/tokens')} mr="-px">
             Tokens
           </Button>
-          <Button onClick={(_e) => router.push('/nfts')} mr="-px">
+          <Button border={styleConstants.tableBorder} onClick={(_e) => router.push('/nfts')} mr="-px">
             NFTs
           </Button>
-          <Button onClick={(_e) => router.push('/transactions')} mr="-px">
+          <Button border={styleConstants.tableBorder} onClick={(_e) => router.push('/transactions')} mr="-px">
             Transactions
           </Button>
-          <Button onClick={(_e) => router.push('/profile')} mr="-px">
+          <Button border={styleConstants.tableBorder} onClick={(_e) => router.push('/profile')} mr="-px">
             Profile
           </Button>
         </ButtonGroup>

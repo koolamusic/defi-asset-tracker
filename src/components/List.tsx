@@ -15,7 +15,8 @@ import {
   Circle,
   useMediaQuery,
 } from '@chakra-ui/react'
-import { ArrowForwardIcon, ChevronRightIcon, InfoOutlineIcon } from '@chakra-ui/icons'
+import { ArrowForwardIcon, ChevronRightIcon } from '@chakra-ui/icons'
+import { FiCircle } from 'react-icons/fi'
 import { useRouter } from 'next/router'
 import { Url } from 'url'
 import { formatAddress, formatBalanceToDecimal, outerColorGen, layerColorGen } from '@utils/helpers'
@@ -131,7 +132,7 @@ export const ProfileList: React.FC<ProfileListProps> = (props) => {
 
         <Box width="5%">
           <Stack isInline>
-            <InfoOutlineIcon />
+            <FiCircle />
           </Stack>
         </Box>
       </Flex>

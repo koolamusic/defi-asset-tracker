@@ -64,7 +64,7 @@ export const styleConstants = {
   thickBorder: '1px solid #0e1b7a',
   altBackground: 'rgb(247, 248, 250)',
   background:
-    'rgba(0, 0, 0, 0) radial-gradient(50% 50%, rgba(252, 7, 125, 0.063) 0%, rgba(255, 255, 255, 0) 100%) repeat scroll 0% 0%',
+    'rgba(0, 0, 0, 0) radial-gradient(50% 50%, rgba(252, 7, 125, 0.023) 0%, rgba(255, 255, 255, 0) 100%) repeat scroll 0% 0%',
   inputMinHeight: '48px',
   inputFontSize: '16px',
   inputPlaceHolder: '14px',

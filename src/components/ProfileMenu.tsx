@@ -34,7 +34,7 @@ export function UserMenu(): JSX.Element {
 
   return (
     <Box
-      position={['fixed', 'fixed']}
+      position={['fixed', 'absolute']}
       justifyContent={['flex-end', 'flex-end']}
       top={[0, 2]}
       right={[0, 0]}

@@ -7,6 +7,7 @@ import { useAuth } from '@lib/auth'
 import * as NextUser from '@utils/user'
 import { config, TPageProps } from '@lib/constants'
 import { NextPageContext } from 'next'
+import { NotificationCard } from '@components/notifications'
 
 interface UserProfileInfoProps {
   'account name': string
@@ -68,6 +69,8 @@ export default function Page(props: TPageProps): JSX.Element {
         </Box>
         {/* /////////////// Render the User Profile list  ///////////// */}
         <Box py={8} />
+
+        <NotificationCard />
 
         <SubmitButton onClick={() => handleLogout()} type="button" mt={8} withIcon buttonName="Logout" />
       </VStack>
