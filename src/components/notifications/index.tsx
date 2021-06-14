@@ -6,7 +6,7 @@ export const NotificationCard = () => {
   return (
     <Box w="100%" py="6" bg={mode('inherit', 'gray.700')} overflow="hidden">
       <Box mb="8">
-        <Text as="h3" fontWeight="bold" fontSize="lg">
+        <Text as="h3" fontWeight="medium" fontFamily="heading" fontSize="lg">
           Transaction & Alerts
         </Text>
         <Text color="gray.500" fontSize="sm">
