@@ -12,7 +12,7 @@ const randomNameConfig: Config = {
 export const generateRandomName = () => uniqueNamesGenerator(randomNameConfig)
 export const stringToHslColor = (str: string, s: number, l: number) => {
   if (!str || str == null) {
-    str = "default"
+    str = 'default'
   }
 
   const table = str.slice(0, 12)
@@ -36,7 +36,7 @@ export const layerColorGen = (payload: string) => stringToHslColor(payload, 50, 
 const web3 = new Moralis.Web3()
 
 if (typeof window !== `undefined`) {
-  ; (window as any).web3 = web3
+  ;(window as any).web3 = web3
 
   // console.log(Moralis)
 }
@@ -87,7 +87,6 @@ export function toGwei(wei: number) {
 export function formatNumberIntl(value: number) {
   return new Intl.NumberFormat('en-US', { style: 'decimal', currency: 'USD' }).format(value)
 }
-
 
 export function orderLastToFirst(arr: any[], key: string) {
   return orderBy(arr, key, 'desc')

@@ -1,14 +1,6 @@
 import React from 'react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Center,
-  Text,
-  Stack,
-  Image,
-  Button,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { Box, Center, Text, Stack, Image, Button, useColorModeValue } from '@chakra-ui/react'
 
 import { FormLayout } from '@components/Layout'
 import { FormPageHeader } from '@components/Body'
@@ -38,12 +30,7 @@ export default function Page(): JSX.Element {
           rounded={'md'}
           overflow={'hidden'}
         >
-          <Stack
-            textAlign={'center'}
-            p={6}
-            color={useColorModeValue('gray.800', 'white')}
-            align={'center'}
-          >
+          <Stack textAlign={'center'} p={6} color={useColorModeValue('gray.800', 'white')} align={'center'}>
             <Text
               fontSize={'sm'}
               fontWeight={500}

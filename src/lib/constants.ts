@@ -105,18 +105,18 @@ export interface TransactionListProps {
 }
 
 export interface TokenStateContainer {
-  user: UserAccountDict;
-  coinBase: CoinListProps[];
-  ethBalance: CoinListProps;
-  bnbBalance: CoinListProps;
-  userEthNFTs: CoinListProps;
-  tokenStat: TokenStatProps['data'][];
-  numTx: number;
+  user: UserAccountDict
+  coinBase: CoinListProps[]
+  ethBalance: CoinListProps
+  bnbBalance: CoinListProps
+  userEthNFTs: CoinListProps
+  tokenStat: TokenStatProps['data'][]
+  numTx: number
 }
 export interface TransactionStateContainer {
-  transactionBase: TransactionListProps[],
-  user: UserAccountDict;
-  tokenStat: TokenStatProps['data'][];
+  transactionBase: TransactionListProps[]
+  user: UserAccountDict
+  tokenStat: TokenStatProps['data'][]
 }
 
 export interface TokenStatProps {
