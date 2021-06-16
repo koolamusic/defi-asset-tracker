@@ -47,7 +47,7 @@ export default function Page(props: TPageProps): JSX.Element {
       'main address': user.ethAddress,
     }
     setProfile(profile)
-    console.log(user)
+    // console.log(user)
   }, [props.user])
 
   const handleLogout = async () => {

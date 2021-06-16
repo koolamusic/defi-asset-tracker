@@ -89,7 +89,7 @@ export default function Page(props: TPageProps): JSX.Element {
     })
   }, [])
 
-  console.log(assets, 'profile assets')
+  // console.log(assets, 'profile assets')
 
   if (loading) {
     return <Loader />

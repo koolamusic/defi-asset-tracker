@@ -57,7 +57,7 @@ export const getProfile = async (ctx: NextPageContext) => {
     // console.log(userProfile, "The user cookie")
     return userProfile as UserAccountDict
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return null
   }
 }
@@ -72,7 +72,7 @@ export const isAuthenticated = async (ctx: NextPageContext) => {
     /* Return truthy */
     return true
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return false
   }
 }
